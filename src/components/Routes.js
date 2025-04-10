@@ -15,6 +15,7 @@ import { Teamelement } from "./pages/superadmin/Teams/Teamelement";
 import { Clientelements } from "./pages/superadmin/Clients/Clientelements";
 import { Employeelayout } from "./pages/superadmin/employee/Employeelayout";
 import { Projectelements } from "./pages/superadmin/Projects/Projectelements";
+import { ProjectDetail } from "./pages/superadmin/Projects/ProjectDetail";
 import { Projectelementsbd } from "./pages/bd/Projects/Projectelementsbd";
 import { Clientelementsbd } from "./pages/bd/Clients/Clientelementsbd";
 import { AuthProvider } from "./context/AuthContext";
@@ -127,6 +128,11 @@ const AppRoutes = () => {
           <Route
             path="/superadmin/projects"
             element={<RoleBasedRoute element={<Projectelements />} allowedRoles={["superadmin"]} />}
+          />
+
+          <Route
+            path="/superadmin/projects-detail/:project_id"
+            element={<RoleBasedRoute element={<ProjectDetail />} allowedRoles={["superadmin"]} />}
           />
 
           <Route

@@ -59,16 +59,16 @@ function DashboardCard09() {
   }, [projectStats]);
 
   return (
-      <div className="flex flex-col col-span-full sm:col-span-6 bg-white dark:bg-gray-800 shadow-xs rounded-xl">
-          <header className="px-5 py-4 border-b border-gray-100 dark:border-gray-700/60 flex items-center">
-              <h2 className="font-semibold text-gray-800 dark:text-gray-100">Projects Over Last 6 Months</h2>
+      <div className="flex flex-col rounded-lg shadow-lg col-span-full sm:col-span-6 bg-white shadow-xs rounded-xl">
+          <header className="px-5 py-4 border-b border-gray-100 bg-blue-600 rounded-lg flex items-center">
+              <h2 className="font-semibold text-white ">Projects Over Last 6 Months</h2>
               <Tooltip className="ml-2" size="lg">
                   <div className="text-sm">Monthly project count from the last six months.</div>
               </Tooltip>
           </header>
           <div className="px-5 py-3">
               <div className="flex items-start">
-                  <div className="text-3xl font-bold text-gray-800 dark:text-gray-100 mr-2">Projects</div>
+                  <div className="text-3xl font-bold text-gray-800 mr-2">Projects</div>
               </div>
           </div>
           {/* Chart built with Chart.js 3 */}

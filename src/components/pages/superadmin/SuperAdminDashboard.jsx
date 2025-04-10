@@ -40,40 +40,33 @@ const SuperAdminDashboard = () => {
     //   </div>
       
     // </div>
-    <div className="grid grid-cols-12 gap-6 ">
+    <div className="grid grid-cols-12 gap-6 p-4 ">
 
               {/* Line chart (Acme Plus) */}
+              <GraphProvider>
+                <ProjectProvider>
+                <DashboardCard01 />
+                </ProjectProvider>
+              </GraphProvider>
+
               <GraphProvider> {/* Wrap your component with the ThemeProvider */}
-              <ProjectProvider>
-              <DashboardCard01 />
-              </ProjectProvider>
-    </GraphProvider>
-              {/* Line chart (Acme Advanced) */}
-              <DashboardCard02 />
-              {/* Line chart (Acme Professional) */}
-              <DashboardCard03 />
-              {/* Bar chart (Direct vs Indirect) */}
+                <DashboardCard04 />
+              </GraphProvider>
+
               <GraphProvider> {/* Wrap your component with the ThemeProvider */}
-      <DashboardCard04 />
-    </GraphProvider>
-              {/* Line chart (Real Time Value) */}
-              <DashboardCard05 />
-              {/* Doughnut chart (Top Countries) */}
-              <GraphProvider> {/* Wrap your component with the ThemeProvider */}
-      <DashboardCard06 />
-    </GraphProvider>
-              {/* Table (Top Channels) */}
-              <ClientProvider >
-               <ProjectProvider>
-              <DashboardCard07 />
-              </ProjectProvider>
-              </ClientProvider>
-              {/* Line chart (Sales Over Time) */}
-              <DashboardCard08 />
+                  <DashboardCard06 />
+              </GraphProvider>
+
               {/* Stacked bar chart (Sales VS Refunds) */}
               <GraphProvider>
-              <DashboardCard09 />
+                <DashboardCard09 />
               </GraphProvider>
+              
+              <ClientProvider >
+                <ProjectProvider>
+                  <DashboardCard07 />
+                </ProjectProvider>
+              </ClientProvider>
               
             </div>
   );

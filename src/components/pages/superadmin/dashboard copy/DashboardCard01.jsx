@@ -6,6 +6,9 @@ import { useProject } from "../../../context/ProjectContext";
 
 function DashboardCard01() {
   const [selectedProject, setSelectedProject] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
   const { projects } = useProject();
   const { fetchWorkingHours, workingHours, loading, error } = useContext(GraphContext);
 
@@ -14,8 +17,6 @@ function DashboardCard01() {
       fetchWorkingHours(selectedProject);
     }
   }, [selectedProject]);
-
-  console.log("Working Hours Data:", workingHours);
 
   const timeToDecimal = (time) => {
     if (!time || time === "00:00") return 0;
@@ -58,40 +59,78 @@ function DashboardCard01() {
       }
     : null;
 
+  const filteredProjects = projects?.filter((p) =>
+    p.project_name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
-    <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white dark:bg-gray-800 shadow-xs rounded-xl">
-      <header className="px-5 py-4 border-b border-gray-100 dark:border-gray-700/60 flex justify-between">
-        <h2 className="font-semibold text-gray-800 dark:text-gray-100">Working Hours</h2>
-        <select
-          className="bg-white-200 dark:bg-white-700 text-black-900 dark:text-black-100 px-3 py-1 rounded"
-          value={selectedProject}
-          onChange={(e) => setSelectedProject(e.target.value)}
-        >
-          <option value="">Select Project</option>
-          {projects && projects.map((project) => (
-            <option key={project.id} value={project.id}>{project.project_name}</option>
-          ))}
-        </select>
+    <div className="flex rounded-lg shadow-lg flex-col col-span-full sm:col-span-6 xl:col-span-6 bg-white shadow-xs rounded-xl">
+      <header className="px-5 py-4 rounded-lg bg-blue-600 border-b border-gray-100 flex justify-between items-center">
+        <h2 className="font-semibold text-white">Working Hours</h2>
+
+        <div className="relative w-64">
+          <button
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            className="w-full bg-white text-black px-3 py-2 rounded border"
+          >
+            {selectedProject
+              ? projects.find((p) => p.id === selectedProject)?.project_name
+              : 'Select Project'}
+          </button>
+
+          {isDropdownOpen && (
+            <div className="absolute w-full mt-1 bg-white shadow rounded z-20">
+              <input
+                type="text"
+                placeholder="Search project..."
+                className="w-full p-2 border-b outline-none"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              <ul className="max-h-40 overflow-y-auto">
+                {filteredProjects?.length > 0 ? (
+                  filteredProjects.map((project) => (
+                    <li
+                      key={project.id}
+                      className="p-2 hover:bg-gray-100 cursor-pointer"
+                      onClick={() => {
+                        setSelectedProject(project.id);
+                        setIsDropdownOpen(false);
+                        setSearchTerm('');
+                      }}
+                    >
+                      {project.project_name}
+                    </li>
+                  ))
+                ) : (
+                  <li className="p-2 text-gray-400">No project found</li>
+                )}
+              </ul>
+            </div>
+          )}
+        </div>
       </header>
 
-      {loading && <p>Loading data...</p>}
-      {error && <p>Error: {error.message || "An unknown error occurred"}</p>}
+      <div>
+        {loading && <p className="p-4">Loading data...</p>}
+        {error && <p className="p-4 text-red-500">Error: {error.message || "An unknown error occurred"}</p>}
 
-      {workingHours && (
-        <div className="p-4">
-          <h3 className="text-lg font-semibold">{workingHours.project_name}</h3>
-          <p><strong>Client ID:</strong> {workingHours.client_id}</p>
-          <p><strong>Total Hours:</strong> {workingHours.project_total_hours}</p>
-          <p><strong>Deadline:</strong> {workingHours.deadline}</p>
-          <p><strong>Requirements:</strong> {workingHours.requirements}</p>
-        </div>
-      )}
+        {workingHours && (
+          <div className="p-4">
+            <h3 className="text-lg font-semibold">{workingHours.project_name}</h3>
+            <p><strong>Client ID:</strong> {workingHours.client_id}</p>
+            <p><strong>Total Hours:</strong> {workingHours.project_total_hours}</p>
+            <p><strong>Deadline:</strong> {workingHours.deadline}</p>
+            <p><strong>Requirements:</strong> {workingHours.requirements}</p>
+          </div>
+        )}
 
-      {filteredChartData ? (
-        <DoughnutChart data={filteredChartData} width={389} height={260} />
-      ) : (
-        <p className="text-center p-4">No data available for the selected project</p>
-      )}
+        {filteredChartData ? (
+          <DoughnutChart data={filteredChartData} width={389} height={260} />
+        ) : (
+          <p className="font-bold text-red-500 text-center p-4">No data available for the selected project</p>
+        )}
+      </div>
     </div>
   );
 }

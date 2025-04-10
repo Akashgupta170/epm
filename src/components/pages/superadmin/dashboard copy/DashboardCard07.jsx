@@ -14,24 +14,25 @@ function DashboardCard07() {
   .slice(0, 7);
 
   return (
-    <div className="col-span-full xl:col-span-8 bg-white dark:bg-gray-800 shadow-xs rounded-xl">
-      <header className="px-5 py-4 border-b border-gray-100 dark:border-gray-700/60">
-        <h2 className="font-semibold text-gray-800 dark:text-gray-100">Recent Projects</h2>
+    <div className="col-span-full shadow-lg rounded-lg xl:col-span-12 bg-white dark:bg-gray-800 shadow-xs rounded-xl">
+      <header className="px-5 pt-2 pb-2 ">
+        <h2 className="font-semibold mb-2 text-2xl dark:text-gray-100">Recent Projects</h2>
+        <hr />
       </header>
       <div className="p-3">
         {/* Table */}
         <div className="overflow-x-auto">
           <table className="table-auto w-full dark:text-gray-300">
             {/* Table header */}
-            <thead className="text-xs uppercase text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-gray-700/50 rounded-xs">
-              <tr>
-                <th className="p-2">
+            <thead className="text-xs uppercase text-white dark:text-gray-500 dark:bg-gray-700/50">
+              <tr className='bg-blue-600 rounded-lg'>
+                <th className="p-3 ">
                   <div className="font-semibold text-left">Client Name</div>
                 </th>
-                <th className="p-2">
+                <th className="p-3">
                   <div className="font-semibold text-center">Project Name</div>
                 </th>
-                <th className="p-2">
+                <th className="p-3">
                   <div className="font-semibold text-center">Created Date</div>
                 </th>
               </tr>
@@ -44,7 +45,7 @@ function DashboardCard07() {
                 </tr>
               ) : latestProjects.length > 0 ? (
                 latestProjects.map((project) => (
-                  <tr key={project.id}>
+                  <tr key={project.id} className='odd:bg-gray-50 hover:bg-gray-100'>
                     <td className="p-2">
                       <div className="text-gray-800 dark:text-gray-100">
                         {project.client?.company_name || "Unknown Client"}

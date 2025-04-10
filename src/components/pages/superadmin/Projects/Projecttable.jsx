@@ -7,6 +7,7 @@ import { SectionHeader } from '../../../components/SectionHeader';
 import { exportToExcel, importFromExcel, useImportEmployees, fetchGoogleSheetData } from "../../../components/excelUtils";
 import { EditButton, SaveButton, CancelButton, DeleteButton, ExportButton, ImportButton, ClearButton, IconApproveButton, IconRejectButton, IconCancelTaskButton, IconSaveButton, IconDeleteButton, IconEditButton, IconViewButton } from "../../../AllButtons/AllButtons";
 import { useActivity } from "../../../context/ActivityContext";
+import { useNavigate } from "react-router-dom";
 
 export const Projecttable = () => {
   const { projects, fetchProjects, editProject, deleteProject, isLoading } = useProject();
@@ -24,6 +25,10 @@ export const Projecttable = () => {
   const [editTags, setEditTags] = useState([]);
 
    const { getActivityTags, activityTags, loading, message } = useActivity();
+   const navigate = useNavigate();
+   const handleViewClick = (projectId) => {
+     navigate(`/superadmin/projects-detail/${projectId}`);
+   };
   
     useEffect(() => {
       // Fetch activity tags on component mount
@@ -257,6 +262,7 @@ export const Projecttable = () => {
                           </>
                         ) : (
                           <>
+                          <IconViewButton onClick={() => handleViewClick(project.id)} />
                             {/* <button onClick={() => handleEditClick(project)} className="flex items-center px-3 py-1.5 bg-amber-500 hover:bg-amber-600 text-white rounded-md transition">
                               <Edit className="h-4 w-4 mr-1" /> Edit
                             </button> */}

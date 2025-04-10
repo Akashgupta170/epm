@@ -59,9 +59,9 @@ function DashboardCard06() {
   console.log("Filtered Chart Data:", filteredChartData);
 
   return (
-    <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white dark:bg-gray-800 shadow-xs rounded-xl">
-      <header className="px-5 py-4 border-b border-gray-100 dark:border-gray-700/60">
-        <h2 className="font-semibold text-gray-800 dark:text-gray-100">Working Hours</h2>
+    <div className="flex rounded-lg shadow-lg flex-col col-span-full sm:col-span-6 xl:col-span-6 bg-white shadow-xs rounded-xl">
+      <header className="px-5 py-4 border-b border-gray-100 bg-blue-600  rounded-lg">
+        <h2 className="font-semibold text-white ">Working Hours</h2>
       </header>
 
       <div className="px-5 py-4 flex gap-4">
@@ -85,7 +85,7 @@ function DashboardCard06() {
       {filteredChartData ? (
         <DoughnutChart data={filteredChartData} width={389} height={260} />
       ) : (
-        <p>No data available for the selected date range</p>
+        <p className=' font-bold text-red-500 text-center'>No data available for the selected date range</p>
       )}
     </div>
   );
