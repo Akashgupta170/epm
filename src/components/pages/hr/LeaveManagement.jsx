@@ -48,7 +48,7 @@ export const LeaveManagement = () => {
 
     return (
         <div className="rounded-2xl border border-gray-200 bg-white shadow-lg max-h-screen overflow-y-auto">
-            <SectionHeader icon={BarChart} title="Employee Management" subtitle="Manage employees and update details" />
+            <SectionHeader icon={BarChart} title="Employee Leave Management" subtitle="Manage employees and update details" />
             {/* <div className="p-8 bg-gradient-to-br from-indigo-600 via-blue-600 to-blue-500">
                 <div className="flex items-center gap-3 mb-3">
                     <BarChart className="h-10 w-10 text-blue-100" />

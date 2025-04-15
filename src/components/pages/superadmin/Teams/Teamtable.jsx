@@ -7,9 +7,6 @@ import { ExportButton } from "../../../AllButtons/AllButtons";
 import { SectionHeader } from '../../../components/SectionHeader';
 import { EditButton, SaveButton, CancelButton, YesButton, DeleteButton, IconApproveButton, IconRejectButton, IconCancelTaskButton, IconSaveButton, IconDeleteButton, IconEditButton } from "../../../AllButtons/AllButtons";
 
-
-
-
 export const Teamtable = () => {
   const { teams, fetchTeams, deleteTeam, updateTeam, isLoading } = useTeam();
   const [editingTeam, setEditingTeam] = useState(null);

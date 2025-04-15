@@ -12,7 +12,7 @@ function DashboardCard07() {
         : [];
 
     return (
-        <div className="col-span-full xl:col-span-8 bg-white dark:bg-gray-800 shadow-lg rounded-xl overflow-hidden">
+        <div className="col-span-full xl:col-span-6 bg-white ring shadow-xl ring-gray-100 rounded-lg overflow-hidden">
             <header className="px-5 py-4 border-b border-gray-100 dark:border-gray-700/60">
                 <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100">Top Performance Sheets</h2>
             </header>

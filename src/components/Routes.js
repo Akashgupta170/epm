@@ -41,6 +41,8 @@ import { TaskProvider } from "./context/TaskContext";
 import Emptask from "./pages/employee/Emptask/Emptask";
 import { Activityelement } from "./pages/superadmin/Activitytask/Activityelement";
 import EmployeeDetail from "./pages/superadmin/employee/EmployeeDetail";
+import ProjectManagerDashboard from "./pages/Pm/ProjectManagerDashboard";
+import Accessories from "./pages/hr/Accessories/Accessories";
 // import EmployeeDetailHrEmployeeDetail from "./pages/hr/Employee/HrEmployeeDetail";
 const RoleBasedRoute = ({ element, allowedRoles }) => {
   // const { user } = useAuth();
@@ -91,7 +93,7 @@ const AppRoutes = () => {
           />
 
 
-<Route
+          <Route
              path="/superadmin/manage-leaves"
             element={
               <LeaveProvider>
@@ -102,8 +104,8 @@ const AppRoutes = () => {
 
 
 
-<Route
-        path="/superadmin/Manage-sheets"
+          <Route
+            path="/superadmin/Manage-sheets"
             element={
               <BDProjectsAssignedProvider>
                 <RoleBasedRoute element={<Managesheets/>} allowedRoles={["superadmin"]} />
@@ -152,7 +154,7 @@ const AppRoutes = () => {
             path="/billingmanager/dashboard"
             element={<RoleBasedRoute element={<BDDashboard />} allowedRoles={["billingmanager"]} />}
           />
-<Route
+          <Route
             path="/superadmin/users/:id"
             element={<RoleBasedRoute element={<EmployeeDetail />} allowedRoles={["superadmin"]} />}
           />
@@ -194,6 +196,12 @@ const AppRoutes = () => {
                 </BDProjectsAssignedProvider>
             }
           />
+
+          <Route
+            path="/projectmanager/dashboard"
+            element={<RoleBasedRoute element={<ProjectManagerDashboard />} allowedRoles={["projectmanager"]} />}
+          />
+
           <Route
             path="/projectmanager/assigned"
             element={<RoleBasedRoute element={<PMassignedelement />} allowedRoles={["projectmanager"]} />}
@@ -229,9 +237,13 @@ const AppRoutes = () => {
             }
           />
           
-              <Route
+          <Route
             path="/hr/dashboard"
             element={<RoleBasedRoute element={<HrDashboard />} allowedRoles={["hr"]} />}
+          />
+          <Route
+            path="/hr/accessories"
+            element={<RoleBasedRoute element={<Accessories />} allowedRoles={["hr"]} />}
           />
           <Route
             path="/team/dashboard"
@@ -303,8 +315,8 @@ const AppRoutes = () => {
           <Route
             path="/team/profile"
             element={<RoleBasedRoute element={<Profile />} allowedRoles={["team"]} />}
-          />
-        </Routes>
+            />
+          </Routes>
       </div>
     </div>
     </AuthProvider>

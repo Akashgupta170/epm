@@ -14,7 +14,7 @@ function DashboardCard07() {
   .slice(0, 7);
 
   return (
-    <div className="col-span-full shadow-lg rounded-lg xl:col-span-12 bg-white dark:bg-gray-800 shadow-xs rounded-xl">
+    <div className="col-span-full shadow-lg rounded-lg xl:col-span-7 bg-white dark:bg-gray-800 shadow-xs rounded-xl">
       <header className="px-5 pt-2 pb-2 ">
         <h2 className="font-semibold mb-2 text-2xl dark:text-gray-100">Recent Projects</h2>
         <hr />
@@ -22,9 +22,9 @@ function DashboardCard07() {
       <div className="p-3">
         {/* Table */}
         <div className="overflow-x-auto">
-          <table className="table-auto w-full dark:text-gray-300">
+          <table className="table-auto w-full">
             {/* Table header */}
-            <thead className="text-xs uppercase text-white dark:text-gray-500 dark:bg-gray-700/50">
+            <thead className="text-xs uppercase text-white">
               <tr className='bg-blue-600 rounded-lg'>
                 <th className="p-3 ">
                   <div className="font-semibold text-left">Client Name</div>
@@ -38,7 +38,7 @@ function DashboardCard07() {
               </tr>
             </thead>
             {/* Table body */}
-            <tbody className="text-sm font-medium divide-y divide-gray-100 dark:divide-gray-700/60">
+            <tbody className="text-sm font-medium divide-y divide-gray-100 ">
               {isLoading ? (
                 <tr>
                   <td colSpan="3" className="p-4 text-center">Loading...</td>

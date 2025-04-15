@@ -60,6 +60,7 @@ export function Sidebar() {
       { name: "Dashboard", path: "/hr/dashboard", icon: <House /> },
       { name: "Employee Management", path: "/hr/employees", icon: <ContactRound /> },
       { name: "Leave Management", path: "/hr/leaves",icon: <CalendarCheck /> },
+      { name: "accessories Management", path: "/hr/accessories",icon: <CalendarCheck /> },
     ],
     [Roles.PM]: [
       { name: "Dashboard", path: "/projectmanager/dashboard", icon: <House /> },

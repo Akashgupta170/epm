@@ -39,33 +39,34 @@ const EmployeeDashboard = () => {
         <div className="grid grid-cols-12 gap-6 ">
     
                   {/* Line chart (Acme Plus) */}
-                  <GraphProvider> {/* Wrap your component with the ThemeProvider */}
-                  <ProjectProvider>
-                  <DashboardCard01 />
-                  </ProjectProvider>
-        </GraphProvider>
-                  {/* Line chart (Acme Advanced) */}
-                  <DashboardCard02 />
-                  {/* Line chart (Acme Professional) */}
-                  <DashboardCard03 />
-                  {/* Bar chart (Direct vs Indirect) */}
-                  <GraphProvider> {/* Wrap your component with the ThemeProvider */}
-          <DashboardCard04 />
-        </GraphProvider>
-                  {/* Line chart (Real Time Value) */}
-                  <DashboardCard05 />
-                  {/* Doughnut chart (Top Countries) */}
-                  <GraphProvider> {/* Wrap your component with the ThemeProvider */}
-          <DashboardCard06 />
-        </GraphProvider>
-                  {/* Table (Top Channels) */}
+                  {/* <GraphProvider>
+                    <ProjectProvider>
+                      <DashboardCard01 />
+                    </ProjectProvider>
+                  </GraphProvider> */}
+
+                  {/* <DashboardCard02 /> */}
+
+                  {/* <DashboardCard03 /> */}
+
+                  <GraphProvider>
+                    <DashboardCard06 />
+                  </GraphProvider>
+
+                  <GraphProvider>
+                    <DashboardCard04 />
+                  </GraphProvider>
+
                   <UserProvider>
                   <DashboardCard07 />
                   </UserProvider>
-                  {/* Line chart (Sales Over Time) */}
-                  <DashboardCard08 />
-                  {/* Stacked bar chart (Sales VS Refunds) */}
-                  <DashboardCard09 />
+                  
+                  <DashboardCard05 />
+
+                  {/* <DashboardCard08 /> */}
+
+                  {/* <DashboardCard09 /> */}
+                  
                   
                 </div>
   );

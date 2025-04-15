@@ -17,7 +17,7 @@ import { GraphProvider } from '../../context/GraphContext';
 import { ProjectProvider  } from '../../context/ProjectContext'
 import { ClientProvider  } from '../../context/ClientContext'
 
-const BDDashboard = () => {
+const ProjectManagerDashboard = () => {
   useEffect(() => {
     console.log("Super Admin Dashboard Mounted");
   }, []);
@@ -57,4 +57,4 @@ const BDDashboard = () => {
   );
 };
 
-export default BDDashboard;
+export default ProjectManagerDashboard;

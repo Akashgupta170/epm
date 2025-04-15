@@ -38,7 +38,7 @@ function DashboardCard03() {
             { stop: 0, color: adjustColorOpacity(getCssVariable('--color-violet-500'), 0) },
             { stop: 1, color: adjustColorOpacity(getCssVariable('--color-violet-500'), 0.2) }
           ]);
-        },       
+        },
         borderColor: getCssVariable('--color-violet-500'),
         borderWidth: 2,
         pointRadius: 0,
@@ -46,7 +46,7 @@ function DashboardCard03() {
         pointBackgroundColor: getCssVariable('--color-violet-500'),
         pointHoverBackgroundColor: getCssVariable('--color-violet-500'),
         pointBorderWidth: 0,
-        pointHoverBorderWidth: 0,          
+        pointHoverBorderWidth: 0,
         clip: 20,
         tension: 0.2,
       },

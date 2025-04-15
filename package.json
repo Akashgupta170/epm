@@ -11,6 +11,7 @@
     "@mui/icons-material": "^6.4.6",
     "@mui/material": "^6.4.6",
     "@mui/system": "^6.4.6",
+    "@mui/x-charts": "^7.28.0",
     "@syncfusion/ej2-base": "^29.1.33",
     "@syncfusion/ej2-react-dropdowns": "^29.1.33",
     "@syncfusion/ej2-react-richtexteditor": "^29.1.33",

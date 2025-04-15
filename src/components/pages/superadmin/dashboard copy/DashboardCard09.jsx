@@ -60,12 +60,14 @@ function DashboardCard09() {
 
   return (
       <div className="flex flex-col rounded-lg shadow-lg col-span-full sm:col-span-6 bg-white shadow-xs rounded-xl">
-          <header className="px-5 py-4 border-b border-gray-100 bg-blue-600 rounded-lg flex items-center">
-              <h2 className="font-semibold text-white ">Projects Over Last 6 Months</h2>
-              <Tooltip className="ml-2" size="lg">
+          <header className="flex items-center justify-between px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-t-2xl">
+            <h2 className="text-lg sm:text-xl font-semibold text-white">
+            Projects Over Last 6 Months
+            </h2>
+            <Tooltip className="ml-2" size="lg">
                   <div className="text-sm">Monthly project count from the last six months.</div>
               </Tooltip>
-          </header>
+        </header>
           <div className="px-5 py-3">
               <div className="flex items-start">
                   <div className="text-3xl font-bold text-gray-800 mr-2">Projects</div>

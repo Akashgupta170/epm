@@ -13,6 +13,7 @@ export const GraphProvider = ({ children }) => {
   const [weeklyWorkingHours, setWeeklyWorkingHours] = useState(null);
   const [empHours, setEmpHours] = useState(null);
   const [projectStats, setProjectStats] = useState([]);
+  const [DepartmentProjectStats, setDepartmentProjectStats] = useState([]);
   const token = localStorage.getItem("userToken");
 
   const fetchGraphData = async (startDate, endDate) => {

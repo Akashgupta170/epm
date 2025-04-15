@@ -14,7 +14,7 @@ function DashboardCard07() {
   .slice(0, 7);
 
   return (
-    <div className="col-span-full shadow-lg rounded-lg xl:col-span-7 bg-white dark:bg-gray-800 shadow-xs rounded-xl">
+    <div className="col-span-full shadow-lg rounded-lg xl:col-span-6 bg-white dark:bg-gray-800 shadow-xs rounded-xl">
       <header className="px-5 pt-2 pb-2 ">
         <h2 className="font-semibold mb-2 text-2xl dark:text-gray-100">Recent Projects</h2>
         <hr />

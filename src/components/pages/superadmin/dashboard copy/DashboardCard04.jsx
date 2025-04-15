@@ -52,8 +52,8 @@ function DashboardCard04() {
       },
       {
         label: 'In-House Hours',
-        data: (weeklyWorkingHours && weeklyWorkingHours.length > 0) 
-          ? weeklyWorkingHours.map(item => timeToDecimal(item.total_inhouse)) 
+        data: (weeklyWorkingHours && weeklyWorkingHours.length > 0)
+          ? weeklyWorkingHours.map(item => timeToDecimal(item.total_inhouse))
           : [],
         backgroundColor: getCssVariable('--color-green-500'),
         hoverBackgroundColor: getCssVariable('--color-green-600'),
@@ -65,10 +65,15 @@ function DashboardCard04() {
   };
 
   return (
-    <div className="flex rounded-lg shadow-lg flex-col col-span-full sm:col-span-6 bg-white shadow-xs rounded-xl">
-      <header className="px-5 py-5 bg-blue-600 dark:border-gray-700/60 rounded-lg">
-        <h2 className="font-semibold text-white dark:text-gray-100">Weekly Status</h2>
-      </header>
+    <div className="flex rounded-lg shadow-lg flex-col col-span-full sm:col-span-6 xl:col-span-5 bg-white shadow-xs rounded-xl">
+      <header className="flex items-center justify-between px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-t-2xl">
+    <h2 className="text-lg sm:text-xl font-semibold text-white">
+      Billable / non-billable
+    </h2>
+    {/* <div className="text-sm text-blue-100 font-medium">
+      📊
+    </div> */}
+  </header>
       
       {/* Check if data is available */}
       {loading ? (

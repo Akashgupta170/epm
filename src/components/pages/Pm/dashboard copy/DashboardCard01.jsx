@@ -45,7 +45,7 @@ const DashboardCard01 = () => {
     <div className="col-span-2 sm:col-span-6 xl:col-span-7 bg-white/70  backdrop-blur-md shadow-xl rounded-2xl flex flex-col border border-gray-200 ">
   <header className="flex items-center justify-between px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-t-2xl">
     <h2 className="text-lg sm:text-xl font-semibold text-white">
-      Department-wise Employees
+      Total Employees in Department
     </h2>
   </header>
 

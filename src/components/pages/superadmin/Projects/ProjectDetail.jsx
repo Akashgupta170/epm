@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Pie, Bar } from 'react-chartjs-2';
+import { API_URL } from "../../../utils/ApiConfig";
+
 import {
   Chart as ChartJS,
   ArcElement,
@@ -29,7 +31,7 @@ export const ProjectDetail = () => {
     const fetchProjectData = async () => {
       try {
         const authToken = localStorage.getItem('userToken');
-        const response = await fetch('http://13.51.178.43/api/api/getfull-projectmananger-data', {
+        const response = await fetch(`${API_URL}/api/getfull-projectmananger-data`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
