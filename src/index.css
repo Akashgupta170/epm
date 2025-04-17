@@ -200,7 +200,7 @@
   /* Start Tag style css */
 
   .top-tag-size {
-    @apply rounded-lg p-4 flex items-center justify-around gap-[7px];
+    @apply rounded-lg p-3 flex items-center justify-around gap-[7px];
 
   }
 
