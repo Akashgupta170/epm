@@ -48,7 +48,7 @@ export const LeaveManagement = () => {
 
     return (
         <div className="rounded-2xl border border-gray-200 bg-white shadow-lg max-h-screen overflow-y-auto">
-            <SectionHeader icon={BarChart} title="Employee Leave Management" subtitle="Manage employees and update details" />
+            <SectionHeader icon={BarChart} title="Employee Management" subtitle="Manage employees and update details" />
             {/* <div className="p-8 bg-gradient-to-br from-indigo-600 via-blue-600 to-blue-500">
                 <div className="flex items-center gap-3 mb-3">
                     <BarChart className="h-10 w-10 text-blue-100" />
@@ -84,21 +84,21 @@ export const LeaveManagement = () => {
                 <div className="min-w-[800px]">
                     <table className="w-full border-collapse">
                         <thead>
-                            <tr className="bg-gray-50/80 text-gray-600 text-sm border-b border-gray-200">
+                            <tr className="table-th-tr-row table-bg-heading">
                                 {["Date", "Employee Name", "Leave Type", "Duration", "Reason", "Status"].map((label, index) => (
-                                    <th key={index} className="px-6 py-4 text-left font-semibold">{label}</th>
+                                    <th key={index} className="px-4 py-2 text-center font-semibold">{label}</th>
                                 ))}
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-100">
                             {currentData.map((leave, index) => (
                                 <tr key={index} className="hover:bg-blue-50/50 transition-all duration-200 ease-in-out">
-                                    <td className="px-6 py-4 text-gray-700">{leave.start_date}</td>
-                                    <td className="px-6 py-4 text-gray-700">{leave.user_name}</td>
-                                    <td className="px-6 py-4 text-gray-700">{leave.leave_type}</td>
-                                    <td className="px-6 py-4 text-gray-700">{leave.hours ? `${leave.hours} Hours` : "Full Day"}</td>
-                                    <td className="px-6 py-4 text-gray-700">{leave.reason}</td>
-                                    <td className="px-6 py-4">
+                                    <td className="px-6 py-4 text-center text-gray-700">{leave.start_date}</td>
+                                    <td className="px-6 py-4 text-center text-gray-700">{leave.user_name}</td>
+                                    <td className="px-6 py-4 text-center text-gray-700">{leave.leave_type}</td>
+                                    <td className="px-6 py-4 text-center text-gray-700">{leave.hours ? `${leave.hours} Hours` : "Full Day"}</td>
+                                    <td className="px-6 py-4 text-center text-gray-700">{leave.reason}</td>
+                                    <td className="px-6 py-4 flex items-center justify-center text-center">
                                         {editMode[leave.id] ? (
                                             <div className="flex items-center gap-4">
                                                 <IconApproveButton onClick={() => handleStatusChange(leave.id, "Approved")} />

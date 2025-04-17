@@ -69,11 +69,12 @@ export const Clients = () => {
         <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-96">
             <h3 className="text-lg font-semibold text-center">Select Hiring Method</h3>
-            <div className="grid flex-col space-y-4 my-4 justify-center">
-              <button onClick={() => { setFormType("upwork"); setClienttype("Hired on Upwork"); setShowPopup(false); }} className="px-4 py-2 bg-blue-500 text-white rounded-md">Hired on Upwork</button>
-              <button onClick={() => { setFormType("direct"); setClienttype("Direct"); setShowPopup(false); }} className="px-4 py-2 bg-green-500 text-white rounded-md">Direct</button>
+            <div className="grid flex-col space-y-4 my-4 mb-6 justify-center">
+              <button onClick={() => { setFormType("upwork"); setClienttype("Hired on Upwork"); setShowPopup(false); }} className="flex items-center justify-center w-full text-center px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transform transition-all duration-200 ease-in-out hover:shadow-lg hover:-translate-y-0.5">Hired on Upwork</button>
+              <button onClick={() => { setFormType("direct"); setClienttype("Direct"); setShowPopup(false); }} className="flex items-center justify-center w-full text-center px-4 py-2 mb-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transform transition-all duration-200 ease-in-out hover:shadow-lg hover:-translate-y-0.5">Direct</button>
             </div>
-            <button onClick={() => setShowPopup(false)} className="w-full mt-2 bg-red-500 hover:bg-red-600 text-white font-medium p-2 rounded-md transition-colors duration-150">Close</button>
+            {/* <button onClick={() => setShowPopup(false)} className="w-full mt-2 bg-red-500 hover:bg-red-600 text-white font-medium p-2 rounded-md transition-colors duration-150">Close</button> */}
+            <CloseButton onClick={() => setShowPopup(false)} />
           </div>
         </div>
       )}
@@ -210,7 +211,7 @@ export const Clients = () => {
                 />
               </div>
 
-              <button type="submit" className="w-full bg-green-500 text-white p-2 rounded-md">
+              {/* <button type="submit" className="w-full bg-green-500 text-white p-2 rounded-md">
                 Submit
               </button>
 
@@ -220,7 +221,9 @@ export const Clients = () => {
                 className="w-full mt-2 bg-red-500 hover:bg-red-600 text-white font-medium p-2 rounded-md transition-colors duration-150"
               >
                 Close
-              </button>
+              </button> */}
+              <SubmitButton />
+              <CloseButton onClick={() => setFormType(null)} />
             </form>
           </div>
         </div>

@@ -5,7 +5,6 @@ import { XMarkIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useAuth } from "../context/AuthContext";
 import { Roles } from "../utils/roles";
 import userimage from "../aasests/profile-img.jpg";
-import logo from "../aasests/logo.png";
 import {
   House,
   Users,
@@ -14,7 +13,7 @@ import {
   Handshake,
   FolderOpenDot,
   LogOut,
-  CalendarHeart, 
+  CalendarHeart,
   CalendarCheck,
   FileSpreadsheet,
   FileChartLine,
@@ -50,7 +49,6 @@ export function Sidebar() {
       { name: "Dashboard", path: "/billingmanager/dashboard", icon: <House /> },
       { name: "Clients", path: "/billingmanager/clients", icon: <Handshake /> },
       { name: "Projects", path: "/billingmanager/projects", icon: <Folders/> },
-      { name: "Activity Tags", path: "/billingmanager/activity-tags", icon: <FileChartLine /> },
       { name: "Teams", path: "/billingmanager/teams", icon: <Users /> },
       { name: "Project Assigned", path: "/billingmanager/projects-assigned", icon: <FileSpreadsheet />  },
       { name: "Manage Sheets", path: "/billingmanager/Manage-sheets", icon: <FileChartLine />},
@@ -127,8 +125,7 @@ export function Sidebar() {
                       }`
                     }
                   >
-                    {/* {icon} */}
-                    
+                    {icon}
                     {name}
                   </NavLink>
                 )}

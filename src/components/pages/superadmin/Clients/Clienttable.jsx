@@ -448,12 +448,13 @@ export const Clienttable = () => {
               //  onChange={handleImport}
               className="px-3 py-2 border rounded-md cursor-pointer"
             />
-            <button
+            {/* <button
               onClick={() => setImportType("")}
               className="mt-2 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition"
             >
               Cancel
-            </button>
+            </button> */}
+            <CancelButton onClick={() => setImportType("")} />
           </div>
 
         </div>
@@ -476,12 +477,13 @@ export const Clienttable = () => {
             >
               Import from Google Sheets
             </button>
-            <button
+            {/* <button
               onClick={() => setImportType("")}
               className="mt-2 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition"
             >
               Cancel
-            </button>
+            </button> */}
+            <CancelButton onClick={() => setImportType("")} />
           </div>
         </div>
       )}

@@ -3,7 +3,7 @@ import { useBDProjectsAssigned } from "../../../context/BDProjectsassigned";
 import { Loader2, Calendar, User, Briefcase, Clock, FileText, Target, BarChart, Search, CheckCircle, XCircle, Pencil, Ban } from "lucide-react";
 import { exportToExcel } from "../../../components/excelUtils";
 import { SectionHeader } from '../../../components/SectionHeader';
-import { EditButton, SaveButton, CancelButton, DeleteButton, ExportButton, ImportButton, ClearButton, IconApproveButton, IconRejectButton, IconCancelTaskButton, IconSaveButton, IconDeleteButton, IconEditButton, IconViewButton } from "../../../AllButtons/AllButtons";
+import { EditButton, SaveButton, CancelButton, DeleteButton, ExportButton, ImportButton, ClearButton, IconApproveButton, IconRejectButton, YesterdayButton, TodayButton, WeeklyButton, CustomButton, IconCancelTaskButton, IconSaveButton, IconDeleteButton, IconEditButton, IconViewButton } from "../../../AllButtons/AllButtons";
 
 
 export const Managesheets = () => {
@@ -20,13 +20,13 @@ export const Managesheets = () => {
   //   yesterday.setDate(yesterday.getDate() - 1);
   //   return yesterday.toISOString().split("T")[0];
   // });
-  
+
   // const [endDate, setEndDate] = useState(() => {
   //   const yesterday = new Date();
   //   yesterday.setDate(yesterday.getDate() - 1);
   //   return yesterday.toISOString().split("T")[0];
   // });
-  
+
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   // console.log("performance data", performanceData);
@@ -36,16 +36,16 @@ export const Managesheets = () => {
     yesterday.setDate(yesterday.getDate() - 1);
     return yesterday.toISOString().split("T")[0]; // Format: "YYYY-MM-DD"
   };
-  
+
   const [startDate, setStartDate] = useState(getYesterday);
   const [endDate, setEndDate] = useState(getYesterday);
-  
+
   useEffect(() => {
     const yesterday = getYesterday();
     setStartDate(yesterday);
     setEndDate(yesterday);
   }, []);
-  
+
 
 
 
@@ -77,19 +77,19 @@ export const Managesheets = () => {
     if (startDate && endDate) {
       const start = new Date(startDate);
       const end = new Date(endDate);
-    
+
       // Convert dates to string format "YYYY-MM-DD"
       const startStr = start.toISOString().split("T")[0];
       const endStr = end.toISOString().split("T")[0];
-    
+
       filtered = filtered.filter(sheet => {
         if (!sheet.date) return false;
-    
+
         const sheetDateStr = sheet.date.split("T")[0]; // Ensure date-only format
         return sheetDateStr >= startStr && sheetDateStr <= endStr;
       });
     }
-    
+
 
     // **Apply Search Filter**
     if (searchTerm) {
@@ -160,29 +160,29 @@ export const Managesheets = () => {
 
   const paginatedData = () => {
     const isFilterApplied = searchTerm || startDate || endDate;
-  
+
     const dataToDisplay = isFilterApplied
       ? filteredData // Show filtered even if it's empty
       : performanceData.flatMap((user) =>
-          user.sheets.map((sheet) => ({
-            ...sheet,
-            user_name: user.user_name,
-          }))
-        );
-  
+        user.sheets.map((sheet) => ({
+          ...sheet,
+          user_name: user.user_name,
+        }))
+      );
+
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     return dataToDisplay.slice(startIndex, endIndex);
   };
-  
+
   const isFilterApplied = searchTerm || startDate || endDate;
-  
+
   const totalPages = Math.ceil(
     (isFilterApplied
       ? filteredData.length
       : performanceData.reduce((acc, user) => acc + user.sheets.length, 0)) / itemsPerPage
   );
-  
+
   return (
     <div className="rounded-2xl border border-gray-200 bg-white shadow-md max-h-screen overflow-y-auto">
       <SectionHeader icon={BarChart} title="Manage Performance Sheet" subtitle="Track and manage performance sheets over time" />
@@ -193,129 +193,158 @@ export const Managesheets = () => {
         </div>
         <p className="text-blue-100 text-lg">Track and manage performance sheets over time</p>
       </div> */}
-<div className="flex flex-wrap items-center justify-between gap-4 sticky top-0 bg-white z-10 shadow-md p-4 rounded-md">
+      <div className="flex flex-wrap items-center justify-between gap-4 sticky top-0 bg-white z-10 shadow-md p-4 rounded-md">
 
-  <div className="flex items-center w-full md:w-auto flex-1 border border-gray-300 px-2 rounded-lg focus-within:ring-2 focus-within:ring-blue-500">
-    <Search className="h-5 w-5 text-gray-400 mr-2" />
-    <input
-      type="text"
-      className="w-full rounded-lg focus:outline-none py-2"
-      placeholder="Search by Project Name..."
-      value={searchTerm}
-      onChange={(e) => setSearchTerm(e.target.value)}
-    />
-  </div>
+        <div className="flex items-center w-full md:w-auto flex-1 border border-gray-300 px-2 rounded-lg focus-within:ring-2 focus-within:ring-blue-500">
+          <Search className="h-5 w-5 text-gray-400 mr-2" />
+          <input
+            type="text"
+            className="w-full rounded-lg focus:outline-none py-2"
+            placeholder="Search by Project Name..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
 
-  {/* Buttons */}
-  <div className="flex flex-wrap items-center gap-2">
-    {!isCustomMode ? (
-      <>
-        <button
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
-          onClick={() => {
-            const today = new Date().toISOString().split("T")[0];
-            setStartDate(today);
-            setEndDate(today);
-          }}
-        >
-          Today
-        </button>
+        {/* Buttons */}
+        <div className="flex flex-wrap items-center gap-2">
+          {!isCustomMode ? (
+            <>
+              {/* <button
+                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
+                onClick={() => {
+                  const today = new Date().toISOString().split("T")[0];
+                  setStartDate(today);
+                  setEndDate(today);
+                }}
+              >
+                Today
+              </button> */}
+              <TodayButton onClick={() => {
+                const today = new Date().toISOString().split("T")[0];
+                setStartDate(today);
+                setEndDate(today);
+              }} />
+              <YesterdayButton onClick={() => {
+                const yesterday = new Date();
+                yesterday.setDate(yesterday.getDate() - 1);
+                const formatted = yesterday.toISOString().split("T")[0];
+                setStartDate(formatted);
+                setEndDate(formatted);
+              }} />
 
-        <button
-          className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition"
-          onClick={() => {
-            const yesterday = new Date();
-            yesterday.setDate(yesterday.getDate() - 1);
-            const formatted = yesterday.toISOString().split("T")[0];
-            setStartDate(formatted);
-            setEndDate(formatted);
-          }}
-        >
-          Yesterday
-        </button>
+              {/* <button
+                className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition"
+                onClick={() => {
+                  const yesterday = new Date();
+                  yesterday.setDate(yesterday.getDate() - 1);
+                  const formatted = yesterday.toISOString().split("T")[0];
+                  setStartDate(formatted);
+                  setEndDate(formatted);
+                }}
+              >
+                Yesterday
+              </button> */}
 
-        <button
-          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
-          onClick={() => {
-            const end = new Date();
-            const start = new Date();
-            start.setDate(start.getDate() - 6);
-            const formattedStart = start.toISOString().split("T")[0];
-            const formattedEnd = end.toISOString().split("T")[0];
-            setStartDate(formattedStart);
-            setEndDate(formattedEnd);
-          }}
-        >
-          Weekly
-        </button>
+              {/* <button
+                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
+                onClick={() => {
+                  const end = new Date();
+                  const start = new Date();
+                  start.setDate(start.getDate() - 6);
+                  const formattedStart = start.toISOString().split("T")[0];
+                  const formattedEnd = end.toISOString().split("T")[0];
+                  setStartDate(formattedStart);
+                  setEndDate(formattedEnd);
+                }}
+              >
+                Weekly
+              </button> */}
+              <WeeklyButton onClick={() => {
+                  const end = new Date();
+                  const start = new Date();
+                  start.setDate(start.getDate() - 6);
+                  const formattedStart = start.toISOString().split("T")[0];
+                  const formattedEnd = end.toISOString().split("T")[0];
+                  setStartDate(formattedStart);
+                  setEndDate(formattedEnd);
+                }}/>
 
-        <button
-          className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700 transition"
-          onClick={() => setIsCustomMode(true)}
-        >
-          Custom
-        </button>
-      </>
-    ) : (
-      <>
-        <input
-          type="date"
-          className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
-        />
-        <input
-          type="date"
-          className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
-        />
-        <ClearButton
-          onClick={() => {
-            setSearchTerm("");
-            setStartDate("");
-            setEndDate("");
-          }}
-        />
-        <button
-          className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
-          onClick={() => {
-            setIsCustomMode(false);
-            setSearchTerm("");
-            setStartDate("");
-            setEndDate("");
-          }}
-        >
-          Cancel
-        </button>
-      </>
-    )}
+              {/* <button
+                className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700 transition"
+                onClick={() => setIsCustomMode(true)}
+              >
+                Custom
+              </button> */}
+              <CustomButton onClick={() => setIsCustomMode(true)}/>
+            </>
+          ) : (
+            <>
+              <input
+                type="date"
+                className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
+              />
+              <input
+                type="date"
+                className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value={endDate}
+                onChange={(e) => setEndDate(e.target.value)}
+              />
+              <ClearButton
+                onClick={() => {
+                  setSearchTerm("");
+                  setStartDate("");
+                  setEndDate("");
+                }}
+              />
+              {/* <button
+                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
+                onClick={() => {
+                  setIsCustomMode(false);
+                  setSearchTerm("");
+                  setStartDate("");
+                  setEndDate("");
+                }}
+              >
+                Cancel
+              </button> */}
 
-    <ExportButton onClick={() => exportToExcel(filteredData, "sheet.xlsx")} />
-    <ImportButton onClick={() => alert("Handle import logic here")} />
-  </div>
-</div>
-
-
-          {selectedRows.length > 0 && (
-            <select
-              className="px-3 py-2 border rounded-lg cursor-pointer bg-gray-100 text-gray-700"
-              onChange={(e) => {
-                const newStatus = e.target.value;
-                allSheets.forEach(sheet => {
-                  if (selectedRows.includes(sheet.id)) {
-                    handleStatusChange(sheet, newStatus);
-                  }
-                });
-              }}
-            >
-              <option value="">Change Status</option>
-              <option value="pending">Pending</option>
-              <option value="approved">Approved</option>
-              <option value="rejected">Rejected</option>
-            </select>
+            <CancelButton onClick={() => {
+                  setIsCustomMode(false);
+                  setSearchTerm("");
+                  setStartDate("");
+                  setEndDate("");
+                }}/>
+            </>
           )}
-  
+
+          <ExportButton onClick={() => exportToExcel(filteredData, "sheet.xlsx")} />
+          <ImportButton onClick={() => alert("Handle import logic here")} />
+        </div>
+      </div>
+
+
+      {selectedRows.length > 0 && (
+        <select
+          className="px-3 py-2 border rounded-lg cursor-pointer bg-gray-100 text-gray-700"
+          onChange={(e) => {
+            const newStatus = e.target.value;
+            allSheets.forEach(sheet => {
+              if (selectedRows.includes(sheet.id)) {
+                handleStatusChange(sheet, newStatus);
+              }
+            });
+          }}
+        >
+          <option value="">Change Status</option>
+          <option value="pending">Pending</option>
+          <option value="approved">Approved</option>
+          <option value="rejected">Rejected</option>
+        </select>
+      )}
+
 
       <div className="max-w-full overflow-x-auto">
         <div className="min-w-[1102px]">
@@ -513,8 +542,6 @@ export const Managesheets = () => {
                 Next
               </button>
             </div>
-
-
           )}
         </div>
       </div>

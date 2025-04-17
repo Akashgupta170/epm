@@ -10,7 +10,7 @@ import user_profile_bg_2 from "../../../aasests/user-profile-bg-2.jpg"
 import { Edit, Save, Trash2, Loader2, Eye, BarChart, Search } from "lucide-react";
 import { SectionHeader } from '../../../components/SectionHeader';
 import { exportToExcel, importFromExcel, useImportEmployees, fetchGoogleSheetData } from "../../../components/excelUtils";
-import { EditButton, SaveButton, CancelButton, DeleteButton, ExportButton, ImportButton, ClearButton, IconApproveButton, IconRejectButton, IconCancelTaskButton, IconSaveButton, IconDeleteButton, IconEditButton, IconViewButton } from "../../../AllButtons/AllButtons";
+import { EditButton, SaveButton, CancelButton, DeleteButton, ExportButton, SaveChangeButton, ImportButton, ClearButton, IconApproveButton, IconRejectButton, IconCancelTaskButton, IconSaveButton, IconDeleteButton, IconEditButton, IconViewButton } from "../../../AllButtons/AllButtons";
 import { useNavigate } from 'react-router-dom';
 
 const EmployeeManagement = () => {
@@ -276,12 +276,13 @@ const EmployeeManagement = () => {
                       <span>Import Google Sheet</span>
                     </button>
 
-                    <button
+                    {/* <button
                       onClick={() => setShowImportOptions(false)}
                       className="mt-2 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition"
                     >
                       Cancel
-                    </button>
+                    </button> */}
+                    <CancelButton onClick={() => setShowImportOptions(false)} />
                   </div>
                 </div>
               )}
@@ -302,12 +303,13 @@ const EmployeeManagement = () => {
                 onChange={handleImport}
                 className="px-3 py-2 border rounded-md cursor-pointer"
               />
-              <button
+              {/* <button
                 onClick={() => setImportType("")}
                 className="mt-2 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition"
               >
                 Cancel
-              </button>
+              </button> */}
+              <CancelButton onClick={() => setImportType("")} />
             </div>
 
           </div>
@@ -326,16 +328,17 @@ const EmployeeManagement = () => {
               />
               <button
                 onClick={handleGoogleSheetImport}
-                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
+                className="assign-btn items-center justify-center"
               >
                 Import from Google Sheets
               </button>
-              <button
+              {/* <button
                 onClick={() => setImportType("")}
                 className="mt-2 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition"
               >
                 Cancel
-              </button>
+              </button> */}
+              <CancelButton onClick={() => setImportType("")} />
             </div>
           </div>
         )}
@@ -447,9 +450,10 @@ const EmployeeManagement = () => {
                   ))}
                 </select>
 
-                <button onClick={handleUpdateEmployee} className="bg-blue-600 text-white px-4 py-2 rounded-md w-full hover:bg-blue-700">
+                {/* <button onClick={handleUpdateEmployee} className="bg-blue-600 text-white px-4 py-2 rounded-md w-full hover:bg-blue-700">
                   Save Changes
-                </button>
+                </button> */}
+                <SaveChangeButton onClick={handleUpdateEmployee}/>
               </>
             ) : (
               <>

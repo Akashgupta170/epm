@@ -58,13 +58,13 @@ function ProjectCard({ project, editProjectId, editProjectName, setEditProjectNa
                   </span>
                   <SyncButton />
                 </div>
-                <div className="flex items-center justify-between">
-                  <Assigned selectedProjectId={project.id} />
-                  <div className="flex items-center text-gray-700">
-                    <Building2 className="h-4 w-4 mr-2 text-blue-600" />
-                    <h3 className="text-sm font-medium">{project.client_name}</h3>
-                  </div>
+                {/* <div className="flex items-center justify-between"> */}
+                <Assigned selectedProjectId={project.id} />
+                <div className="flex items-center mt-3 text-gray-700">
+                  <Building2 className="h-4 w-4 text-blue-600" />
+                  <h3 className="text-base ml-2 font-medium">{project.client_name}</h3>
                 </div>
+                {/* </div> */}
               </div>
             )}
           </div>
@@ -76,12 +76,14 @@ function ProjectCard({ project, editProjectId, editProjectName, setEditProjectNa
         </div>
       </div>
 
-      <div className="p-4 space-y-5">
+      <div className="p-4 space-y-2">
+        <div className="flex items-center text-sm font-medium text-gray-700">
+          <Users className="h-4 w-4 text-blue-600 mr-3 mt-1" />
+          <span className="font-medium text-gray-700 block mb-1 mt-2">Project Managers</span>
+        </div>
         <div className="flex items-center justify-between text-sm text-gray-600 bg-gray-50 rounded-lg p-3">
           <div className="flex items-center">
-            <Users className="h-4 w-4 text-blue-600 mr-3" />
             <div>
-              <span className="font-medium text-gray-700 block mb-1">Project Managers</span>
               {Array.isArray(project.project_managers) && project.project_managers.length > 0 ? (
                 project.project_managers.map((pm) => (
                   <div key={pm.id} className="text-gray-700">{pm.name}</div>
@@ -101,8 +103,8 @@ function ProjectCard({ project, editProjectId, editProjectName, setEditProjectNa
               //   <Trash2 className="h-4 w-4" />
               //   Edit Manager
               // </button>
-              <ModifyButton onClick={toggleRemoveList}/>
-              
+              <ModifyButton onClick={toggleRemoveList} />
+
             )}
         </div>
 
@@ -137,8 +139,8 @@ function ProjectCard({ project, editProjectId, editProjectName, setEditProjectNa
 
         <div className="space-y-3">
           <div className="flex items-center text-sm font-medium text-gray-700">
-            <Users className="h-4 w-4 text-blue-600 mr-2" />
-            <span>Assigned Users</span>
+            <Users className="h-4 w-4 text-blue-600 mr-2 mt-1" />
+            <span className="font-medium text-gray-700 block mb-1 mt-2">Assigned Users</span>
           </div>
           {Array.isArray(project.assigned_users) && project.assigned_users.length > 0 ? (
             <div className="grid gap-2">
@@ -159,11 +161,15 @@ function ProjectCard({ project, editProjectId, editProjectName, setEditProjectNa
           )}
         </div>
 
-        <div className="flex items-center text-sm text-gray-600 bg-gray-50 rounded-lg p-3">
-          <Clock className="h-4 w-4 text-blue-600 mr-3" />
-          <div>
-            <span className="font-medium text-gray-700 block mb-1">Deadline</span>
-            {project.deadline || "N/A"}
+        <div className="space-y-3">
+          <div className="flex items-center text-sm font-medium text-gray-700">
+            <Clock className="h-4 w-4 text-blue-600 mr-3 mt-1" />
+            <span className="font-medium text-gray-700 block mb-1 mt-2">Deadline</span>
+          </div>
+          <div className="flex items-center text-sm text-gray-600 bg-gray-50 rounded-lg p-3">
+            <div>
+              {project.deadline || "N/A"}
+            </div>
           </div>
         </div>
       </div>
@@ -259,7 +265,7 @@ export const Assignedtable = () => {
         {isLoading ? (
           <div className="flex items-center justify-center py-12">
             <div className="bg-white rounded-lg shadow-md px-6 py-4 flex items-center">
-              <Loader2 className="h-6 w-6 animate-spin text-blue-500 mr-3" />
+              <Loader2 className="h-6 w-6 animate-spin text-blue-500 mr-3 mt-1" />
               <span className="text-gray-600 font-medium">Loading assigned projects...</span>
             </div>
           </div>

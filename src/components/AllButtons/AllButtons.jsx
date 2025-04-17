@@ -1,5 +1,5 @@
 import { CheckCircle, XCircle, Pencil, Ban, Save, Edit, Trash2, Eye, UserPlus, FolderSync } from "lucide-react";
-// import { EditButton, SaveButton, CancelButton, YesButton, DeleteButton, AssignButton, ExportButton, ModifyButton, SyncButton, ImportButton, ClearButton, CloseButton, SubmitButton, IconApproveButton, IconRejectButton, IconCancelTaskButton, IconSaveButton, IconDeleteButton, IconEditButton, IconViewButton, } from "../../../AllButtons/AllButtons";
+// import { EditButton, SaveButton, CancelButton, YesButton, DeleteButton, AssignButton, ExportButton, SaveChangeButton, ModifyButton, TodayButton, YesterdayButton, WeeklyButton, CustomButton, SyncButton, ImportButton, ClearButton, CloseButton, SubmitButton, IconApproveButton, IconRejectButton, IconCancelTaskButton, IconSaveButton, IconDeleteButton, IconEditButton, IconViewButton, } from "../../../AllButtons/AllButtons";
 
 
 // NORMAL BUTTONS STARTED HERE
@@ -48,7 +48,7 @@ export function DeleteButton({ onClick }) {
 
 export function AssignButton({ onClick }) {
     return (
-        <button onClick={onClick} className="assign-btn">
+        <button onClick={onClick} className="assign-btn flex w-full items-center justify-center">
             <UserPlus className="normal-btn-size" />
             Assign Projects
         </button>
@@ -66,7 +66,7 @@ export function SyncButton({ onClick }) {
 
 export function ModifyButton({ onClick }) {
     return (
-        <button onClick={onClick} className="delete-btn">
+        <button onClick={onClick} className="modify-btn">
             <Trash2 className="normal-btn-size" />
             Delete
         </button>
@@ -113,6 +113,47 @@ export function SubmitButton({ onClick }) {
         </button>
     );
 }
+
+export function TodayButton({ onClick }) {
+    return (
+        <button onClick={onClick} className="today-btn">
+            Today
+        </button>
+    );
+}
+
+export function YesterdayButton({ onClick }) {
+    return (
+        <button onClick={onClick} className="yesterday-btn">
+            Yesterday
+        </button>
+    );
+}
+
+export function WeeklyButton({ onClick }) {
+    return (
+        <button onClick={onClick} className="weekly-btn">
+            Weekly
+        </button>
+    );
+}
+
+export function CustomButton({ onClick }) {
+    return (
+        <button onClick={onClick} className="custom-btn">
+            Custom
+        </button>
+    );
+}
+
+export function SaveChangeButton({ onClick }) {
+    return (
+        <button onClick={onClick} className="submit-btn flex w-full items-center justify-center">
+            Save Changes
+        </button>
+    );
+}
+
 
 // ICONS BUTTONS STARTED HERE
 
@@ -188,6 +229,11 @@ export function IconViewButton({ onClick }) {
 <CloseButton/>
 <SubmitButton/>
 <ModifyButton/>
+<TodayButton/>
+<YesterdayButton/>
+<WeeklyButton/>
+<CustomButton/>
+<SaveChangeButton/>
 
 <IconApproveButton/>
 <IconRejectButton/>
