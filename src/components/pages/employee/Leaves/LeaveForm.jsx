@@ -36,7 +36,7 @@ function LeaveForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('userToken');
 
     if (!token) {
       alert('User not authenticated');

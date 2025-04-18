@@ -85,15 +85,6 @@ const DashboardCard06 = () => {
 
   return (
     <div className="flex flex-col sm:col-span-6 xl:col-span-5 rounded-lg shadow-lg bg-white">
-      {/* <header className="flex items-center justify-between px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-t-2xl">
-        <h2 className="text-lg sm:text-xl font-semibold text-white">
-          Total Projects in Department
-        </h2>
-        <div className="text-sm text-blue-100 font-medium">
-          📊
-        </div>
-      </header> */}
-
       <StatCardHeader icon={Briefcase} title="Total Projects in Department" tooltip="Total Projects in Department." />
       <div className="p-6 h-96 flex justify-center items-center">
         {errorMsg ? (

@@ -1,6 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react'; 
+import React, { useState, useEffect, useContext } from 'react';
 import { GraphContext } from '../../../context/GraphContext';
 import BarChart from '../../../charts/BarChart01';
+import { StatCardHeader } from "../../../components/CardsDashboard";
+import { CheckCircle, XCircle, Pencil, Ban, Save, Edit, CalendarDays, Trash2, Eye, UserPlus, FolderSync, Briefcase } from "lucide-react";
 
 // Import utilities
 import { getCssVariable } from '../Dashutils/Utils';
@@ -24,14 +26,14 @@ function DashboardCard04() {
 
   // Prepare chart data if weeklyWorkingHours data is available
   const chartData = {
-    labels: (weeklyWorkingHours && weeklyWorkingHours.length > 0) 
-      ? weeklyWorkingHours.map(item => item.date) 
+    labels: (weeklyWorkingHours && weeklyWorkingHours.length > 0)
+      ? weeklyWorkingHours.map(item => item.date)
       : [],
     datasets: [
       {
         label: 'Billable Hours',
-        data: (weeklyWorkingHours && weeklyWorkingHours.length > 0) 
-          ? weeklyWorkingHours.map(item => timeToDecimal(item.total_billable)) 
+        data: (weeklyWorkingHours && weeklyWorkingHours.length > 0)
+          ? weeklyWorkingHours.map(item => timeToDecimal(item.total_billable))
           : [],
         backgroundColor: getCssVariable('--color-sky-500'),
         hoverBackgroundColor: getCssVariable('--color-sky-600'),
@@ -41,8 +43,8 @@ function DashboardCard04() {
       },
       {
         label: 'Non-Billable Hours',
-        data: (weeklyWorkingHours && weeklyWorkingHours.length > 0) 
-          ? weeklyWorkingHours.map(item => timeToDecimal(item.total_non_billable)) 
+        data: (weeklyWorkingHours && weeklyWorkingHours.length > 0)
+          ? weeklyWorkingHours.map(item => timeToDecimal(item.total_non_billable))
           : [],
         backgroundColor: getCssVariable('--color-violet-500'),
         hoverBackgroundColor: getCssVariable('--color-violet-600'),
@@ -66,15 +68,8 @@ function DashboardCard04() {
 
   return (
     <div className="flex rounded-lg shadow-lg flex-col col-span-full sm:col-span-6 xl:col-span-5 bg-white shadow-xs rounded-xl">
-      <header className="flex items-center justify-between px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-t-2xl">
-    <h2 className="text-lg sm:text-xl font-semibold text-white">
-      Billable / non-billable
-    </h2>
-    {/* <div className="text-sm text-blue-100 font-medium">
-      📊
-    </div> */}
-  </header>
-      
+      <StatCardHeader icon={UserPlus} title="Billable / non-billable" tooltip="Billable / non-billable Hours." />
+
       {/* Check if data is available */}
       {loading ? (
         <p>Loading...</p>
@@ -83,7 +78,9 @@ function DashboardCard04() {
         chartData.labels.length > 0 ? (
           <BarChart data={chartData} width={595} height={248} />
         ) : (
-          <p>No data available for the selected week</p>
+          <div className="flex items-center justify-center h-full w-full">
+            <p>No data available for the selected week</p>
+          </div>
         )
       )}
     </div>

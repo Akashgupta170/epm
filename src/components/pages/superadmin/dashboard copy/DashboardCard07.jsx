@@ -24,10 +24,10 @@ function DashboardCard07() {
       <StatCardHeader icon={Briefcase} title="Recent Projects" tooltip="Recent Projects." />
       <div className="p-3">
         {/* Table */}
-        <div className="overflow-x-auto">
+        <div className="overflow-auto max-h-[50vh]">
           <table className="table-auto w-full">
             {/* Table header */}
-            <thead className="text-xs uppercase text-white">
+            <thead className="text-xs uppercase text-white sticky top-0">
               <tr className='bg-blue-600 rounded-lg'>
                 <th className="p-3 ">
                   <div className="font-semibold text-left">Client Name</div>

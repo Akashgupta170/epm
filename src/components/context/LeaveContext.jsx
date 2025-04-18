@@ -47,7 +47,7 @@ export const LeaveProvider = ({ children }) => {
             hrLeaveDetails();
             pmLeavesfnc();
       //  console.log("Statuses updated successfully");
-       showAlert({ variant: "success", title: "Success", message: "Leave uploaded successfully" });
+       showAlert({ variant: "success", title: "Success", message: "Leave updated successfully" });
     } catch (error) {
         setError(error.message);
     } finally {

@@ -48,7 +48,7 @@ function BarChart02({
             beginAtZero: true,
             ticks: {
               maxTicksLimit: 5,
-              callback: (value) => formatValue(value),
+              // callback: (value) => formatValue(value),
               color: darkMode ? textColor.dark : textColor.light,
             },
             grid: {
@@ -84,8 +84,8 @@ function BarChart02({
           },
           tooltip: {
             callbacks: {
-              title: () => false, // Disable tooltip title
-              label: (context) => formatValue(context.parsed.y),
+              title: () => false,
+              // label: (context) => formatValue(context.parsed.y),
             },
             bodyColor: darkMode ? tooltipBodyColor.dark : tooltipBodyColor.light,
             backgroundColor: darkMode ? tooltipBgColor.dark : tooltipBgColor.light,

@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { API_URL } from '../../../utils/ApiConfig';
+import { StatCardHeader } from "../../../components/CardsDashboard";
+import { CalendarDays } from "lucide-react";
+
 
 const DashboardCard02 = () => {
   const [leaves, setLeaves] = useState([]);
@@ -35,14 +38,11 @@ const DashboardCard02 = () => {
 
   return (
     <div className="col-span-full shadow-lg rounded-lg xl:col-span-6 bg-white dark:bg-gray-800 shadow-xs rounded-xl">
-      <header className="px-5 pt-2 pb-2">
-        <h2 className="font-semibold mb-2 text-2xl dark:text-gray-100">Recent Leaves</h2>
-        <hr />
-      </header>
+      <StatCardHeader icon={CalendarDays} title="Recent Leaves" tooltip="Recent Leaves" />
       <div className="p-3">
-        <div className="overflow-x-auto">
+        <div className="overflow-auto max-h-[50vh]">
           <table className="table-auto w-full">
-            <thead className="text-xs uppercase text-white">
+            <thead className="text-xs uppercase text-white sticky top-0">
               <tr className='bg-blue-600 rounded-lg'>
                 <th className="p-3 text-left">Employee Name</th>
                 <th className="p-3 text-center">Leave Type</th>

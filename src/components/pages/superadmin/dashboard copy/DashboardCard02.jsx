@@ -43,9 +43,9 @@ const DashboardCard02 = () => {
       </header> */}
       <StatCardHeader icon={CalendarDays} title="Recent Leaves" tooltip="Recent Leaves Details." />
       <div className="p-3">
-        <div className="overflow-x-auto">
+        <div className="overflow-auto max-h-[50vh]">
           <table className="table-auto w-full">
-            <thead className="text-xs uppercase text-white">
+            <thead className="text-xs uppercase text-white sticky top-0">
               <tr className='bg-blue-600 rounded-lg'>
                 <th className="p-3 text-left">Employee Name</th>
                 <th className="p-3 text-center">Leave Type</th>
