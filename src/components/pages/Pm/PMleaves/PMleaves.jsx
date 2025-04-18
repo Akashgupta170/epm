@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Loader2, Calendar, User, Clock, FileText, BarChart, Search } from "lucide-react";
 import { useLeave } from "../../../context/LeaveContext";
+import { SectionHeader } from '../../../components/SectionHeader';
 
 export const PMleaves = () => {
     const { pmleaves, pmLeavesfnc, postStatuses, loading, error } = useLeave();
@@ -28,13 +29,14 @@ export const PMleaves = () => {
 
     return (
         <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-md shadow-black/25">
-            <div className="top-heading-bg">
+            {/* <div className="top-heading-bg">
                 <div className="flex items-center gap-3 mb-3">
                     <BarChart className="h-10 w-10 text-blue-100" />
                     <h2 className="text-3xl font-bold text-white">Manage Leaves</h2>
                 </div>
                 <p className="text-blue-100 text-lg">Track and manage leave requests</p>
-            </div>
+            </div> */}
+            <SectionHeader icon={BarChart} title="Employee Management" subtitle="Track and manage leave requests" />
 
             <div className="p-4 flex items-center gap-3">
                 <div className="relative w-full max-w-md">

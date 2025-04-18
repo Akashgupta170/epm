@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { usePMContext } from "../../../context/PMContext"; // Importing the context
 import { Loader2, Calendar, User, Briefcase, Clock, FileText, Target, BarChart, Search } from "lucide-react";
+import { SectionHeader } from '../../../components/SectionHeader';
 
 export const Sheet = () => {
     const { performanceData, loading, getPerformanceDetails } = usePMContext(); // Removed `error`
@@ -25,13 +26,15 @@ export const Sheet = () => {
 
     return (
         <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-md shadow-black/25">
-            <div className="top-heading-bg">
+            {/* <div className="top-heading-bg">
                 <div className="flex items-center gap-3 mb-3">
                     <BarChart className="h-10 w-10 text-blue-100" />
                     <h2 className="text-3xl font-bold text-white">Manage Performance Sheet</h2>
                 </div>
                 <p className="text-blue-100 text-lg">Track and manage performance sheets over time</p>
-            </div>
+            </div> */}
+
+            <SectionHeader icon={BarChart} title="Manage Performance Sheet" subtitle="Track and manage performance sheets over time" />
 
             <div className="p-4 flex items-center gap-3">
                 <div className="relative w-full max-w-md">
