@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
+import { StatCardHeader } from "../../../components/CardsDashboard";
+import { CheckCircle, XCircle, Pencil, Ban, Save, Edit, CalendarDays, Trash2, Eye, UserPlus, FolderSync, Briefcase } from "lucide-react";
 import { API_URL } from "../../../utils/ApiConfig";
 import {
   Chart as ChartJS,
@@ -43,12 +45,12 @@ const DashboardCard01 = () => {
 
   return (
     <div className="col-span-2 sm:col-span-6 xl:col-span-7 bg-white/70  backdrop-blur-md shadow-xl rounded-2xl flex flex-col border border-gray-200 ">
-  <header className="flex items-center justify-between px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-t-2xl">
+  {/* <header className="flex items-center justify-between px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-t-2xl">
     <h2 className="text-lg sm:text-xl font-semibold text-white">
       Department-wise Employees
     </h2>
-  </header>
-
+  </header> */}
+  <StatCardHeader icon={Briefcase} title="Department-wise Employees" tooltip="Department-wise Employees." />
   <div className="p-5 h-96 flex items-center justify-center">
     {labels.length > 0 && data.length > 0 ? (
       <Bar

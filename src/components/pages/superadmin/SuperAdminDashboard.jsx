@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import { StatCardHeader } from "../../components/CardsDashboard";
+import { CheckCircle, XCircle, Pencil, Ban, Save, Edit, CalendarDays, Trash2, Eye, UserPlus, FolderSync, Briefcase } from "lucide-react";
 // import MonthlySales from './Dashboard/MonthlySales';
 // import { Roletable } from './Roles/Roletable';
 // import { Teamtable } from './Teams/Teamtable';
@@ -13,9 +15,9 @@ import DashboardCard06 from './dashboard copy/DashboardCard06';
 import DashboardCard07 from './dashboard copy/DashboardCard07';
 // import DashboardCard08 from './dashboard copy/DashboardCard08';
 import DashboardCard09 from './dashboard copy/DashboardCard09';
-import { GraphProvider } from '../../context/GraphContext'; 
-import { ProjectProvider  } from '../../context/ProjectContext'
-import { ClientProvider  } from '../../context/ClientContext'
+import { GraphProvider } from '../../context/GraphContext';
+import { ProjectProvider } from '../../context/ProjectContext';
+import { ClientProvider } from '../../context/ClientContext';
 
 const SuperAdminDashboard = () => {
   useEffect(() => {
@@ -25,35 +27,36 @@ const SuperAdminDashboard = () => {
   return (
     <div className="grid grid-cols-12 gap-6 p-4 ">
 
-              <GraphProvider>
-                <ProjectProvider>
-                  <DashboardCard01 />
-                </ProjectProvider>
-              </GraphProvider>
+      <GraphProvider>
+        <ProjectProvider>
+          <DashboardCard01 />
+        </ProjectProvider>
+      </GraphProvider>
 
-              <GraphProvider>
-                <DashboardCard06 />
-              </GraphProvider>
-              
-              <GraphProvider>
-                <DashboardCard04 />
-              </GraphProvider>
+      <GraphProvider>
+        <DashboardCard06 />
+      </GraphProvider>
 
-              <ClientProvider >
-                <ProjectProvider>
-                  <DashboardCard07 />
-                </ProjectProvider>
-              </ClientProvider>
+      <GraphProvider>
+        <DashboardCard04 />
+      </GraphProvider>
 
-              <GraphProvider>
-                <DashboardCard09 />
-              </GraphProvider>
 
-              <GraphProvider>
-                <DashboardCard02 />
-              </GraphProvider>
+      <ClientProvider >
+        <ProjectProvider>
+          <DashboardCard07 />
+        </ProjectProvider>
+      </ClientProvider>
 
-            </div>
+      <GraphProvider>
+        <DashboardCard09 />
+      </GraphProvider>
+
+      <GraphProvider>
+        <DashboardCard02 />
+      </GraphProvider>
+
+    </div>
   );
 };
 

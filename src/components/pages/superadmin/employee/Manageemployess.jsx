@@ -175,7 +175,7 @@ const EmployeeManagement = () => {
     navigate(`/superadmin/users/${employee.id}`, { state: { employee } });
   };
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white shadow-lg max-h-screen overflow-y-auto">
+    <div className="rounded-2xl border border-gray-200 bg-white !shadow-md max-h-screen overflow-y-auto">
       <SectionHeader icon={BarChart} title="Employee Management" subtitle="Manage employees and update details" />
       {/* <div className="flex justify-between items-center p-4">
         <div className="my-2">

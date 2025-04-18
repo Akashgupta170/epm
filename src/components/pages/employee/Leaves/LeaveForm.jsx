@@ -118,10 +118,43 @@ function LeaveForm() {
           </div>
 
           <form className="space-y-6" onSubmit={handleSubmit}>
+            
+            {/* <div className="flex items-center justify-between gap-4">
+              <div className="relative w-6/12">
+                <label htmlFor="start-date" className="block text-sm font-medium text-gray-700 mb-2 flex items-center">
+                  <Calendar className="w-4 h-4 mr-2 text-gray-400" />
+                  Start Date
+                </label>
+                <input
+                  type="date"
+                  id="start-date"
+                  name="start_date"
+                  value={formData.start_date}
+                  onChange={handleChange}
+                  className="block w-full px-4 py-3 border-2 border-gray-200 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
+                />
+              </div>
+              {showEndDate && (
+                <div className="relative w-6/12">
+                  <label htmlFor="end-date" className="block text-sm font-medium text-gray-700 mb-2 flex items-center">
+                    <Calendar className="w-4 h-4 mr-2 text-gray-400" />
+                    End Date
+                  </label>
+                  <input
+                    type="date"
+                    id="end-date"
+                    name="end_date"
+                    value={formData.end_date}
+                    onChange={handleChange}
+                    className="block w-full px-4 py-3 border-2 border-gray-200 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
+                  />
+                </div>
+              )}
+            </div> */}
 
             <div className="flex items-center justify-between gap-4">
               {/* Start Date */}
-              <div className="relative w-6/12">
+              <div className={`relative ${showEndDate ? 'w-6/12' : 'w-full'}`}>
                 <label htmlFor="start-date" className="block text-sm font-medium text-gray-700 mb-2 flex items-center">
                   <Calendar className="w-4 h-4 mr-2 text-gray-400" />
                   Start Date
@@ -155,10 +188,10 @@ function LeaveForm() {
               )}
             </div>
 
+
             <div className="flex items-center justify-between gap-4">
 
-              {/* Leave Type */}
-              <div className="relative w-6/12">
+              <div className={`relative ${showHours ? 'w-6/12' : 'w-full'}`}>
                 <label htmlFor="leave-type" className="block text-sm font-medium text-gray-700 mb-2 flex items-center">
                   <Type className="w-4 h-4 mr-2 text-gray-400" />
                   Leave Type
@@ -184,8 +217,7 @@ function LeaveForm() {
                   </div>
                 </div>
               </div>
-
-              {/* Hours */}
+              
               {showHours && (
                 <div className="relative w-6/12">
                   <label htmlFor="hours" className="block text-sm font-medium text-gray-700 mb-2 flex items-center">
