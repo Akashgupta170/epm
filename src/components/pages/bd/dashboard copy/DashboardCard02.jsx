@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { API_URL } from '../../../utils/ApiConfig';
+import { StatCardHeader } from "../../../components/CardsDashboard";
+import { CheckCircle, XCircle, Pencil, Ban, Save, Edit, CalendarDays, Trash2, Eye, UserPlus, FolderSync, Briefcase } from "lucide-react";
 
 const DashboardCard02 = () => {
   const [leaves, setLeaves] = useState([]);
@@ -34,15 +36,16 @@ const DashboardCard02 = () => {
   }, []);
 
   return (
-    <div className="col-span-full shadow-lg rounded-lg xl:col-span-6 bg-white dark:bg-gray-800 shadow-xs rounded-xl">
-      <header className="px-5 pt-2 pb-2">
-        <h2 className="font-semibold mb-2 text-2xl dark:text-gray-100">Recent Leaves</h2>
+    <div className="col-span-full shadow-lg rounded-lg xl:col-span-6 bg-white shadow-xs rounded-xl">
+      {/* <header className="px-5 pt-2 pb-2">
+        <h2 className="font-semibold mb-2 text-2xl ">Recent Leaves</h2>
         <hr />
-      </header>
+      </header> */}
+      <StatCardHeader icon={CalendarDays} title="Recent Leaves" tooltip="Recent Leaves Details." />
       <div className="p-3">
-        <div className="overflow-x-auto">
+        <div className="overflow-auto max-h-[50vh]">
           <table className="table-auto w-full">
-            <thead className="text-xs uppercase text-white">
+            <thead className="text-xs uppercase text-white sticky top-0">
               <tr className='bg-blue-600 rounded-lg'>
                 <th className="p-3 text-left">Employee Name</th>
                 <th className="p-3 text-center">Leave Type</th>
@@ -51,7 +54,7 @@ const DashboardCard02 = () => {
                 <th className="p-3 text-center">Created Date</th>
               </tr>
             </thead>
-            <tbody className="text-sm font-medium divide-y divide-gray-100 text-gray-800 dark:text-white">
+            <tbody className="text-sm font-medium divide-y divide-gray-100 text-gray-800 ">
               {leaves.length > 0 ? (
                 leaves.map((leave) => (
                   <tr key={leave.id}>
@@ -64,8 +67,8 @@ const DashboardCard02 = () => {
                     </td>
                     <td className="p-3 text-center">
                       {leave.status === "Approved"
-                        ? <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-green-400 border border-green-400">{leave.status}</span>
-                        : <span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-red-400 border border-red-400">{leave.status}</span>}
+                        ? <span class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm border border-green-400">{leave.status}</span>
+                        : <span class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm border border-red-400">{leave.status}</span>}
                     </td>
                     <td className="p-3 text-center">
                       {new Date(leave.created_at).toLocaleDateString()}

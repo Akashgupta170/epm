@@ -38,7 +38,7 @@ function LeaveForm() {
     e.preventDefault();
     const token = localStorage.getItem('userToken');
 
-    if (!token) {
+    if (!token){
       alert('User not authenticated');
       return;
     }

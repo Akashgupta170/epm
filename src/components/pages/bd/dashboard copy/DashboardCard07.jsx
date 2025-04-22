@@ -1,6 +1,8 @@
 import React from 'react';
 import { useProject } from "../../../context/ProjectContext";
 import { useClient } from "../../../context/ClientContext";
+import { StatCardHeader } from "../../../components/CardsDashboard";
+import { CheckCircle, XCircle, Pencil, Ban, Save, Edit, CalendarDays, Trash2, Eye, UserPlus, FolderSync, Briefcase } from "lucide-react";
 
 function DashboardCard07() {
   const { projects, isLoading } = useProject();
@@ -14,17 +16,18 @@ function DashboardCard07() {
   .slice(0, 7);
 
   return (
-    <div className="col-span-full shadow-lg rounded-lg xl:col-span-7 bg-white dark:bg-gray-800 shadow-xs rounded-xl">
-      <header className="px-5 pt-2 pb-2 ">
-        <h2 className="font-semibold mb-2 text-2xl dark:text-gray-100">Recent Projects</h2>
+    <div className="col-span-full shadow-lg rounded-lg xl:col-span-7 bg-white shadow-xs rounded-xl">
+      {/* <header className="px-5 pt-2 pb-2 ">
+        <h2 className="font-semibold mb-2 text-2xl ">Recent Projects</h2>
         <hr />
-      </header>
+      </header> */}
+      <StatCardHeader icon={Briefcase} title="Recent Projects" tooltip="Recent Projects." />
       <div className="p-3">
         {/* Table */}
-        <div className="overflow-x-auto">
+        <div className="overflow-auto max-h-[50vh]">
           <table className="table-auto w-full">
             {/* Table header */}
-            <thead className="text-xs uppercase text-white">
+            <thead className="text-xs uppercase text-white sticky top-0">
               <tr className='bg-blue-600 rounded-lg'>
                 <th className="p-3 ">
                   <div className="font-semibold text-left">Client Name</div>
@@ -47,7 +50,7 @@ function DashboardCard07() {
                 latestProjects.map((project) => (
                   <tr key={project.id} className='odd:bg-gray-50 hover:bg-gray-100'>
                     <td className="p-2">
-                      <div className="text-gray-800 dark:text-gray-100">
+                      <div className="text-gray-800 ">
                         {project.client?.company_name || "Unknown Client"}
                       </div>
                     </td>

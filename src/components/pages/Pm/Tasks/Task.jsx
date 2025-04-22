@@ -130,7 +130,7 @@ export default function TaskList() {
   };
 
   return (
-    <div className="flex items-center justify-center relative">
+    <div className="flex items-center justify-center relative ">
       {showForm && (
 
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
@@ -188,7 +188,7 @@ export default function TaskList() {
       )}
 
 
-      <div className="w-full bg-white shadow-md rounded-3xl">
+      <div className="w-full bg-white shadow-md rounded-3xl ">
         <SectionHeader icon={BriefcaseBusiness} title="Project Details" subtitle="Project Details" />
         <div className="p-4 flex items-center justify-between gap-3 border border-b">
           <button onClick={() => setShowForm(true)} className="add-items-btn">
@@ -241,7 +241,7 @@ export default function TaskList() {
           )}
         </div>
 
-        <div className="p-4">
+        <div className="p-4 min-h-[100vh]">
           <h2 className="text-2xl font-bold text-blue-800 mb-6">Project Tasks</h2>
           <div className="relative border-l-4 border-blue-500 ml-9 space-y-4">
             {tasks.data?.tasks.length > 0 ? (

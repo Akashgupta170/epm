@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useTeams } from "../../../context/BDTeamContext";
-import { Loader2, Users, Mail, Phone, Building2, Search } from "lucide-react";
+import { Loader2, Users, Mail, Phone, Building2,BarChart } from "lucide-react";
+import { SectionHeader } from '../../../components/SectionHeader';
+
+
 
 const TeamSection = ({ team }) => {
   return (
@@ -67,32 +70,7 @@ export const BDTeam = () => {
 
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xl">
-      <div className="px-8 py-6 bg-gradient-to-r from-blue-50 to-indigo-50 border-b border-gray-200">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <div className="p-2 bg-blue-600 rounded-lg">
-              <Users className="h-6 w-6 text-white" />
-            </div>
-            <div>
-              <h2 className="text-2xl font-bold text-gray-900">Team Management</h2>
-              <p className="text-sm text-gray-600 mt-1">
-                Overview of Teams and Their Members
-              </p>
-            </div>
-          </div>
-          <div className="relative">
-            <Search className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search by User Name..."
-              className="pl-10 pr-4 py-2 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
-        </div>
-      </div>
-
+      <SectionHeader icon={BarChart} title="Team Management" subtitle="Overview of Teams and Their Members" />
       <div className="p-8">
         {/* Team Selection Buttons */}
         <div className="flex space-x-3 mb-6">

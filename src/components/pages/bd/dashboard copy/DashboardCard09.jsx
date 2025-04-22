@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Tooltip from '../Dashutils/Tooltip';
+import { StatCardHeader } from "../../../components/CardsDashboard";
+import { CheckCircle, XCircle, Pencil, Ban, Save, Edit, CalendarDays, Trash2, Eye, UserPlus, FolderSync, Briefcase } from "lucide-react";
 import BarChart from '../../../charts/BarChart02';
 import { GraphContext } from '../../../context/GraphContext';
 import { getCssVariable } from '../Dashutils/Utils';
@@ -60,21 +61,8 @@ function DashboardCard09() {
 
     return (
         <div className="flex flex-col rounded-lg shadow-lg col-span-full sm:col-span-6 bg-white shadow-xs rounded-xl">
-            <header className="flex items-center justify-between px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-t-2xl">
-                <h2 className="text-lg sm:text-xl font-semibold text-white">
-                    Projects Over Last 6 Months
-                </h2>
-                <Tooltip className="ml-2" size="lg">
-                    <div className="text-sm">Monthly project count from the last six months.</div>
-                </Tooltip>
-            </header>
-            <div className="px-5 py-3">
-                <div className="flex items-start">
-                    <div className="text-3xl font-bold text-gray-800 mr-2">Projects</div>
-                </div>
-            </div>
-            {/* Chart built with Chart.js 3 */}
-            <div className="grow">
+            <StatCardHeader icon={Briefcase} title="Projects Over Last 6 Months" tooltip="Monthly project count from the last six months." />
+            <div className="mt-10">
                 {loading ? (
                     <p>Loading...</p>
                 ) : error ? (
