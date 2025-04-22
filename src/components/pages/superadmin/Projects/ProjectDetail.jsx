@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Pie, Bar } from 'react-chartjs-2';
 import { API_URL } from "../../../utils/ApiConfig";
+import { StatCardHeader } from "../../../components/CardsDashboard";
+import { SectionHeader } from '../../../components/SectionHeader';
+import {Briefcase,BarChart } from "lucide-react";
+
 
 import {
   Chart as ChartJS,
@@ -63,8 +67,10 @@ export const ProjectDetail = () => {
   if (!project) return <div className="text-center text-red-600 text-xl p-10">Project not found.</div>;
 
   return (
-    <div className="p-6 max-w-7xl mx-auto bg-gray-100 min-h-screen space-y-8">
-      <div className="bg-white shadow rounded-lg p-6 space-y-4 mb-6">
+     <>
+    <SectionHeader icon={BarChart} title="Projects Detail" subtitle="Project detail page" />
+    <div className="max-w-full shadow bg-gray-100 min-h-screen space-y-8">
+      <div className="bg-white  rounded-lg p-6 space-y-4 mb-6">
         <h2 className="text-2xl font-bold mb-4">Project name : {project.project_name}</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
@@ -81,8 +87,10 @@ export const ProjectDetail = () => {
             };
 
             return (
-              <div key={i} className="border p-4 rounded shadow-sm">
-                <div className="flex justify-between flex-wrap gap-4 bg-blue-500 p-4 text-white">
+              <div key={i} className="">
+                <StatCardHeader icon={Briefcase} title="Project Detail" tooltip="Project Detail" />
+               <div className='border rounded'>
+               <div className="flex justify-between flex-wrap gap-4 bg-white p-4 border">
                   <div>
                     <h2 className="text-xl font-bold mb-2">Manager</h2>
                     {/* <hr /> */}
@@ -93,14 +101,15 @@ export const ProjectDetail = () => {
                   <div>
                     <h2 className="text-xl text-white font-bold mb-2">Hours</h2>
                     {/* <hr /> */}
-                    <p className="text-white font-bold">Total: {project.total_hours}</p>
-                    <p className="text-white font-bold">Worked: {project.worked_hours}</p>
-                    <p className="text-white font-bold">Remaining: {project.remaining_hours}</p>
+                    <p className=" font-bold">Total: {project.total_hours}</p>
+                    <p className=" font-bold">Worked: {project.worked_hours}</p>
+                    <p className=" font-bold">Remaining: {project.remaining_hours}</p>
                   </div>
                 </div>
                 <div className="w-full h-64 mt-4">
                   <Pie data={pieData} options={{ responsive: true, maintainAspectRatio: false }} />
                 </div>
+               </div>
               </div>
             );
           })}
@@ -152,5 +161,6 @@ export const ProjectDetail = () => {
         })}
       </div>
     </div>
+     </>
   );
 };
