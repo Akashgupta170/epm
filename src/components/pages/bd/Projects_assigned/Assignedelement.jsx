@@ -9,7 +9,6 @@ export const Assignedelement = () => {
     <div>
         <ClientProvider >
             <BDProjectsAssignedProvider >
-           
                 <Assignedtable/>
             </BDProjectsAssignedProvider >
           </ClientProvider >

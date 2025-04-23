@@ -175,7 +175,7 @@ const EmployeeManagement = () => {
     navigate(`/superadmin/users/${employee.id}`, { state: { employee } });
   };
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white shadow-lg max-h-screen overflow-y-auto">
+    <div className="rounded-2xl border border-gray-200 bg-white !shadow-md max-h-screen overflow-y-auto">
       <SectionHeader icon={BarChart} title="Employee Management" subtitle="Manage employees and update details" />
       {/* <div className="flex justify-between items-center p-4">
         <div className="my-2">
@@ -353,6 +353,7 @@ const EmployeeManagement = () => {
               <th className="px-4 py-2 text-center">Email</th>
               <th className="px-4 py-2 text-center">Phone</th>
               <th className="px-4 py-2 text-center">Department</th>
+              <th className="px-4 py-2 text-center">Role</th>
               <th className="px-4 py-2 text-center">Actions</th>
             </tr>
           </thead>
@@ -375,6 +376,7 @@ const EmployeeManagement = () => {
                   <td className="px-4 py-3 text-gray-900 text-center">{employee.email}</td>
                   <td className="px-4 py-3 text-gray-900 text-center">{employee.phone_num || "N/A"}</td>
                   <td className="px-4 py-3 text-gray-900 text-center">{employee.team || "N/A"}</td>
+                  <td className="px-4 py-3 text-gray-900 text-center">{employee.roles || "N/A"}</td>
                   <td className="px-4 py-3 flex gap-2 flex items-center justify-center">
                     {/* <button
                       onClick={() => handleViewEmployee(employee)}

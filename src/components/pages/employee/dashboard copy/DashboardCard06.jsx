@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react'; 
 import DoughnutChart from '../../../charts/DoughnutChart';
 import { GraphContext } from '../../../context/GraphContext';
+import { StatCardHeader } from "../../../components/CardsDashboard";
+import { Briefcase } from "lucide-react";
 
 import { getCssVariable } from '../Dashutils/Utils';
 
@@ -52,10 +54,8 @@ function DashboardCard06() {
   console.log("Filtered Chart Data:", filteredChartData);
 
   return (
-    <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white ring shadow-xl ring-gray-100 rounded-lg">
-      <header className="px-5 py-4 border-b border-gray-100">
-        <h2 className="font-semibold text-gray-800 dark:text-gray-100">Working Hours</h2>
-      </header>
+    <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-5 bg-white ring shadow-xl ring-gray-100 rounded-lg">
+      <StatCardHeader icon={Briefcase} title="Working hours" tooltip="Working hours" />
       
       {loading && <p>Loading data...</p>}
       {error && <p>Error: {error.message || "An unknown error occurred"}</p>}

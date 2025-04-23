@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useBDProjectsAssigned } from "../../../context/BDProjectsassigned";
-import { Edit, Save, Trash2, Loader2, Calendar, Users, Building2, Clock, UserPlus, Search, BarChart } from "lucide-react";
+import { Loader2, Users, Building2, Clock, Search, BarChart } from "lucide-react";
 import { Assigned } from "./Assigned";
 import { SectionHeader } from '../../../components/SectionHeader';
-import { EditButton, SaveButton, CancelButton, YesButton, DeleteButton, AssignButton, ExportButton, ModifyButton, SyncButton, ImportButton, ClearButton, CloseButton, SubmitButton, IconApproveButton, IconRejectButton, IconCancelTaskButton, IconSaveButton, IconDeleteButton, IconEditButton, IconViewButton, } from "../../../AllButtons/AllButtons";
+import {ModifyButton, SyncButton,} from "../../../AllButtons/AllButtons";
 
 
 function ProjectCard({ project, editProjectId, editProjectName, setEditProjectName, handleEditClick }) {
@@ -193,7 +193,6 @@ export const Assignedtable = () => {
 
   const filteredProjects = assignedData?.filter((project) => {
     if (!searchTerm) return true;
-
     switch (filterOption) {
       case "project_name":
         return project.project_name.toLowerCase().includes(searchTerm.toLowerCase());

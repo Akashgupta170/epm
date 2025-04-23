@@ -7,11 +7,9 @@ import { BDTeamProvider } from '../../../context/BDTeamContext'
 export const BDTeamelement = () => {
   return (
     <div>
-    
-                <BDTeamProvider>
-                    <BDTeam/>
-                </BDTeamProvider>
-                
+      <BDTeamProvider>
+          <BDTeam/>
+      </BDTeamProvider>
     </div>
   )
 }

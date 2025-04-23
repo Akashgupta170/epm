@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Overview } from "../../../components/RichTextEditor";
 import { useTask } from "../../../context/TaskContext"; // ✅ Import useTask from TaskContext
-import { Edit, Save, Trash2, Loader2, Trash } from "lucide-react";
+import { Edit, Save, Trash2, BriefcaseBusiness, Loader2, Trash } from "lucide-react";
+import { SectionHeader } from '../../../components/SectionHeader';
+import { SaveButton, CancelButton } from "../../../AllButtons/AllButtons";
+
 
 
 export default function TaskList() {
@@ -127,7 +130,7 @@ export default function TaskList() {
   };
 
   return (
-    <div className="flex items-center justify-center relative">
+    <div className="flex items-center justify-center relative ">
       {showForm && (
 
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
@@ -147,7 +150,6 @@ export default function TaskList() {
               readOnly
               className="w-full p-2 mb-3 border rounded bg-gray-100 cursor-not-allowed"
             />
-
             <input
               type="number"
               placeholder="Hours"
@@ -170,216 +172,234 @@ export default function TaskList() {
 
             <Overview />
 
-
-            <div className="flex justify-end gap-3">
-              <button onClick={() => setShowForm(false)} className="px-4 py-2 bg-gray-400 text-white rounded">
+            <div className="flex justify-center gap-3">
+              {/* <button onClick={() => setShowForm(false)} className="px-4 py-2 bg-gray-400 text-white rounded">
                 Cancel
-              </button>
-              <button onClick={handleAddTask} className="flex items-center px-4 py-2 bg-blue-700 text-white rounded">
+              </button> */}
+              <CancelButton onClick={() => setShowForm(false)} />
+              {/* <button onClick={handleAddTask} className="flex items-center px-4 py-2 bg-blue-700 text-white rounded">
                 <Save className="h-4 w-4 mr-1" />
                 Save
-              </button>
+              </button> */}
+              <SaveButton onClick={handleAddTask} />
             </div>
           </div>
         </div>
       )}
 
 
-      <div className="w-full bg-white shadow-md rounded-3xl p-4">
-        <div className="absolute top-5 right-10">
-          <button
-            onClick={() => setShowForm(true)}
-            className="add-items-btn"
-            
-          >
+      <div className="w-full bg-white shadow-md rounded-3xl ">
+        <SectionHeader icon={BriefcaseBusiness} title="Project Details" subtitle="Project Details" />
+        <div className="p-4 flex items-center justify-between gap-3 border border-b">
+          <button onClick={() => setShowForm(true)} className="add-items-btn">
             + Add Task
           </button>
-        </div>
-        <h2 className="text-4xl font-extrabold text-blue-800 mb-8 text-center">Project Details</h2>
-        {tasks.data && (
-          <div className="mb-8 top-heading-bg rounded-lg ">
-            {isEditing ? (
-              <input
-                type="text"
-                value={editProjectName}
-                onChange={(e) => setEditProjectName(e.target.value)}
-                className="text-2xl font-bold text-gray-900 text-white border p-2 w-full"
-              />
-            ) : (
-              <p className="text-2xl font-bold text-gray-900 text-white">{tasks.data.project_name}</p>
-            )}
-            <p className="text-lg text-gray-700 text-white">
-              <strong>Created At:</strong> {tasks.data.created_at}
-            </p>
-            <p className="text-lg text-gray-700 text-white">
-              <strong>Deadline:</strong> {tasks.data.deadline}
-            </p>
-            <p className="text-lg text-gray-700 text-white">
-              <strong>Total Hours:</strong> {tasks.data.total_hours}
-            </p>
-            <p className="text-lg text-gray-700 text-white">
-              <strong>Assigned By:</strong> {tasks.data.project_managers[0]}
-            </p>
-          </div>
-        )}
-
-        <h2 className="text-2xl font-bold text-blue-800 mb-6">Project Tasks</h2>
-        <div className="relative border-l-4 border-blue-500 ml-9 space-y-4">
-          {tasks.data?.tasks.length > 0 ? (
-            tasks.data.tasks.map((task) => (
-              <div key={task.id} className="relative px-5 py-1 border-b border-[#e1e1e1] pb-5">
-                <div className="absolute w-5 h-5 bg-blue-600 rounded-full -left-[0.7rem] top-3"></div>
-                <div className="flex justify-between items-center">
-
-                  {/* Editable Title Field */}
-                  {editTaskId === task.id ? (
-                    <input
-                      type="text"
-                      value={editTitle}
-                      onChange={(e) => setEditTitle(e.target.value)}
-                      className="text-base font-bold text-gray-900 border p-2 w-full rounded-md mr-3"
-                    />
-                  ) : (
-                    <button
-                      onClick={() => toggleTask(task.id)}
-                      className="w-full text-left text-base font-bold text-gray-900 hover:text-blue-700 focus:outline-none transition-all"
-                    >
-                      {task.title}
-                    </button>
-                  )}
-
-                  {/* Status Dropdown & Edit Buttons */}
-                  <div className="relative flex items-center gap-2">
-                    <button
-                      onClick={() => toggleStatusDropdown(task.id)}
-                      className="px-4 py-2 bg-gray-200 rounded-lg shadow-md hover:bg-gray-300 transition-all whitespace-nowrap"
-                    >
-                      {task.status}
-                    </button>
-
-                    {statusDropdown === task.id && (
-                      <div className="absolute top-[10px] z-30 right-[35px] mt-2 w-36 bg-white border border-gray-300 rounded-lg shadow-lg">
-                        <button
-                          onClick={() => updateStatus(task.id, "To do")}
-                          className="block w-full px-4 py-2 text-left hover:bg-gray-100 "
-                        >
-                          To-Do
-                        </button>
-                        <button
-                          onClick={() => updateStatus(task.id, "In Progress")}
-                          className="block w-full px-4 py-2 text-left hover:bg-gray-100"
-                        >
-                          In Progress
-                        </button>
-                        <button
-                          onClick={() => updateStatus(task.id, "Completed")}
-                          className="block w-full px-4 py-2 text-left hover:bg-gray-100"
-                        >
-                          Completed
-                        </button>
-                        <button
-                          onClick={() => updateStatus(task.id, "Cancel")}
-                          className="block w-full px-4 py-2 text-left hover:bg-gray-100"
-                        >
-                          Cancel
-                        </button>
-                      </div>
-                    )}
-
-                    {/* Edit, Save & Cancel Buttons */}
-                    {editTaskId === task.id ? (
-                      <div className="flex space-x-2">
-                        <button
-                          onClick={() => saveEdit(task.id)}
-                          className="save-btn"
-                        ><Save className="h-4 w-4 mr-1" />
-                          Save
-                        </button>
-                        <button
-                          onClick={cancelEdit}
-                          className="cancel-btn"
-                        >
-                          Cancel
-                        </button>
-                      </div>
-                    ) : (
-                      <button
-                        onClick={() => startEditing(task)}
-                        className="edit-btn"
-                      ><Edit className="h-4 w-4 mr-1" />
-                        Edit
-                      </button>
-                    )}
-
-
-                    <button
-                      onClick={() => handleDelete(task.id)}
-                      className="delete-btn"
-                    ><Trash2 className="h-4 w-4 mr-1" />
-                      Delete
-                    </button>
-                  </div>
-                </div>
-
-                {/* Task Details (Expands when clicked) */}
-                {openTask === task.id && (
-                  <div className="mt-5 p-6 bg-blue-50 rounded-2xl shadow-lg border border-blue-300">
-
-                    {/* Editable Deadline Field */}
-                    <p className="text-lg text-gray-800 font-semibold">
-                      <strong>Deadline:</strong>
-                      {editTaskId === task.id ? (
-                        <input
-                          type="date"
-                          value={editDeadline}
-                          onChange={(e) => setEditDeadline(e.target.value)}
-                          className="border p-2 ml-2"
-                        />
-                      ) : (
-                        <span className="ml-2">{task.deadline}</span>
-                      )}
-                    </p>
-
-                    {/* Editable Hours Field */}
-                    <p className="text-lg text-gray-800 font-semibold">
-                      <strong>Hours:</strong>
-                      {editTaskId === task.id ? (
-                        <input
-                          type="number"
-                          value={editHours}
-                          onChange={(e) => setEditHours(e.target.value)}
-                          className="border p-2 ml-2 w-20"
-                        />
-                      ) : (
-                        <span className="ml-2">{task.hours}</span>
-                      )}
-                    </p>
-
-                    <p className="text-lg text-gray-800 font-semibold">
-                      <strong>Assigned By:</strong> {task.project_manager.name}
-                    </p>
-
-                    {/* Editable Task Description */}
-                    <p className="text-gray-900 mt-5 leading-relaxed border-t pt-4 text-justify text-lg font-medium">
-                      {editTaskId === task.id ? (
-                        <textarea
-                          value={editDescription}
-                          onChange={(e) => setEditDescription(e.target.value)}
-                          className="border p-2 w-full h-24"
-                        />
-                      ) : (
-                        task.description
-                      )}
+          {tasks.data && (
+            <div className="flex flex-wrap md:flex-nowrap items-center gap-3 border p-2 rounded-lg shadow-md bg-white bg-gradient-to-br from-blue-500 from-25% via-blue-800 via-50% to-blue-500 to-100%">
+              <div className="flex flex-wrap md:flex-nowrap items-center gap-3 border p-2 rounded-lg shadow-md bg-white">
+                {isEditing ? (
+                  <input
+                    type="text"
+                    value={editProjectName}
+                    onChange={(e) => setEditProjectName(e.target.value)}
+                    className="text-2xl font-bold text-gray-900 border p-2 w-full"
+                  />
+                ) : (
+                  <div className="flex flex-col flex-wrap md:flex-nowrap items-center gap-1">
+                    <strong>Project Name:</strong>
+                    <p className="text-lg text-gray-700">
+                      {tasks.data.project_name}
                     </p>
                   </div>
                 )}
               </div>
-            ))
-          ) : (
-            <p className="text-lg text-gray-800 font-semibold">
-              No tasks available for this project.
-            </p>
+              <div className="flex flex-col flex-wrap md:flex-nowrap items-center gap-1 border p-2 rounded-lg shadow-md bg-white">
+                <strong>Created At:</strong>
+                <p className="text-lg text-gray-700 ">
+                  {tasks.data.created_at}
+                </p>
+              </div>
+              <div className="flex flex-col flex-wrap md:flex-nowrap items-center gap-1 border p-2 rounded-lg shadow-md bg-white">
+                <strong>Deadline:</strong>
+                <p className="text-lg text-gray-700">
+                  {tasks.data.deadline}
+                </p>
+              </div>
+              <div className="flex flex-col flex-wrap md:flex-nowrap items-center gap-1 border p-2 rounded-lg shadow-md bg-white">
+                <strong>Total Hours:</strong>
+                <p className="text-lg text-gray-700">
+                  {tasks.data.total_hours}
+                </p>
+              </div>
+              <div className="flex flex-col flex-wrap md:flex-nowrap items-center gap-1 border p-2 rounded-lg shadow-md bg-white">
+                <strong>Assigned By:</strong>
+                <p className="text-lg text-gray-700">
+                  {tasks.data.project_managers[0]}
+                </p>
+              </div>
+            </div>
           )}
+        </div>
+
+        <div className="p-4 min-h-[100vh]">
+          <h2 className="text-2xl font-bold text-blue-800 mb-6">Project Tasks</h2>
+          <div className="relative border-l-4 border-blue-500 ml-9 space-y-4">
+            {tasks.data?.tasks.length > 0 ? (
+              tasks.data.tasks.map((task) => (
+                <div key={task.id} className="relative px-5 py-1 border-b border-[#e1e1e1] pb-5">
+                  <div className="absolute w-5 h-5 bg-blue-600 rounded-full -left-[0.7rem] top-3"></div>
+                  <div className="flex justify-between items-center">
+
+                    {/* Editable Title Field */}
+                    {editTaskId === task.id ? (
+                      <input
+                        type="text"
+                        value={editTitle}
+                        onChange={(e) => setEditTitle(e.target.value)}
+                        className="text-base font-bold text-gray-900 border p-2 w-full rounded-md mr-3"
+                      />
+                    ) : (
+                      <button
+                        onClick={() => toggleTask(task.id)}
+                        className="w-full text-left text-base font-bold text-gray-900 hover:text-blue-700 focus:outline-none transition-all"
+                      >
+                        {task.title}
+                      </button>
+                    )}
+
+                    {/* Status Dropdown & Edit Buttons */}
+                    <div className="relative flex items-center gap-2">
+                      <button
+                        onClick={() => toggleStatusDropdown(task.id)}
+                        className="px-4 py-2 bg-gray-200 rounded-lg shadow-md hover:bg-gray-300 transition-all whitespace-nowrap"
+                      >
+                        {task.status}
+                      </button>
+
+                      {statusDropdown === task.id && (
+                        <div className="absolute top-[10px] z-30 right-[35px] mt-2 w-36 bg-white border border-gray-300 rounded-lg shadow-lg">
+                          <button
+                            onClick={() => updateStatus(task.id, "To do")}
+                            className="block w-full px-4 py-2 text-left hover:bg-gray-100 "
+                          >
+                            To-Do
+                          </button>
+                          <button
+                            onClick={() => updateStatus(task.id, "In Progress")}
+                            className="block w-full px-4 py-2 text-left hover:bg-gray-100"
+                          >
+                            In Progress
+                          </button>
+                          <button
+                            onClick={() => updateStatus(task.id, "Completed")}
+                            className="block w-full px-4 py-2 text-left hover:bg-gray-100"
+                          >
+                            Completed
+                          </button>
+                          <button
+                            onClick={() => updateStatus(task.id, "Cancel")}
+                            className="block w-full px-4 py-2 text-left hover:bg-gray-100"
+                          >
+                            Cancel
+                          </button>
+                        </div>
+                      )}
+
+                      {/* Edit, Save & Cancel Buttons */}
+                      {editTaskId === task.id ? (
+                        <div className="flex space-x-2">
+                          <button
+                            onClick={() => saveEdit(task.id)}
+                            className="save-btn"
+                          ><Save className="h-4 w-4 mr-1" />
+                            Save
+                          </button>
+                          <button
+                            onClick={cancelEdit}
+                            className="cancel-btn"
+                          >
+                            Cancel
+                          </button>
+                        </div>
+                      ) : (
+                        <button
+                          onClick={() => startEditing(task)}
+                          className="edit-btn"
+                        ><Edit className="h-4 w-4 mr-1" />
+                          Edit
+                        </button>
+                      )}
+
+
+                      <button
+                        onClick={() => handleDelete(task.id)}
+                        className="delete-btn"
+                      ><Trash2 className="h-4 w-4 mr-1" />
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Task Details (Expands when clicked) */}
+                  {openTask === task.id && (
+                    <div className="mt-5 p-6 bg-blue-50 rounded-2xl shadow-lg border border-blue-300">
+
+                      {/* Editable Deadline Field */}
+                      <p className="text-lg text-gray-800 font-semibold">
+                        <strong>Deadline:</strong>
+                        {editTaskId === task.id ? (
+                          <input
+                            type="date"
+                            value={editDeadline}
+                            onChange={(e) => setEditDeadline(e.target.value)}
+                            className="border p-2 ml-2"
+                          />
+                        ) : (
+                          <span className="ml-2">{task.deadline}</span>
+                        )}
+                      </p>
+
+                      {/* Editable Hours Field */}
+                      <p className="text-lg text-gray-800 font-semibold">
+                        <strong>Hours:</strong>
+                        {editTaskId === task.id ? (
+                          <input
+                            type="number"
+                            value={editHours}
+                            onChange={(e) => setEditHours(e.target.value)}
+                            className="border p-2 ml-2 w-20"
+                          />
+                        ) : (
+                          <span className="ml-2">{task.hours}</span>
+                        )}
+                      </p>
+
+                      <p className="text-lg text-gray-800 font-semibold">
+                        <strong>Assigned By:</strong> {task.project_manager.name}
+                      </p>
+
+                      {/* Editable Task Description */}
+                      <p className="text-gray-900 mt-5 leading-relaxed border-t pt-4 text-justify text-lg font-medium">
+                        {editTaskId === task.id ? (
+                          <textarea
+                            value={editDescription}
+                            onChange={(e) => setEditDescription(e.target.value)}
+                            className="border p-2 w-full h-24"
+                          />
+                        ) : (
+                          task.description
+                        )}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              ))
+            ) : (
+              <p className="text-lg text-gray-800 font-semibold">
+                No tasks available for this project.
+              </p>
+            )}
+          </div>
         </div>
 
       </div>

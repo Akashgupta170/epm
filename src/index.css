@@ -38,6 +38,10 @@
     @apply p-8 bg-gradient-to-br from-indigo-600 via-blue-600 to-blue-500;
   }
 
+  .carddesign {
+    @apply flex flex-col shadow-md col-span-full sm:col-span-6 bg-white rounded-xl;
+  }
+
   .normal-btn-size {
     @apply h-4 w-4 mr-1;
   }

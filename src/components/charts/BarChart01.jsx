@@ -1,5 +1,4 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { useThemeProvider } from '../pages/superadmin/Dashutils/ThemeContext';
 
 import { chartColors } from './ChartjsConfig';
 import {
@@ -8,21 +7,15 @@ import {
 import 'chartjs-adapter-moment';
 
 // Import utilities
-import { formatValue } from '../pages/superadmin/Dashutils/Utils';
+// import { formatValue } from '../pages/superadmin/Dashutils/Utils';
 
 Chart.register(BarController, BarElement, LinearScale, TimeScale, Tooltip, Legend);
 
-function BarChart01({
-  data,
-  width,
-  height
-}) {
-
+function BarChart01({ data, width, height }) {
   const [chart, setChart] = useState(null);
   const canvas = useRef(null);
   const legend = useRef(null);
-  const { currentTheme } = useThemeProvider();
-  const darkMode = currentTheme === 'dark';
+
   const { textColor, gridColor, tooltipBodyColor, tooltipBgColor, tooltipBorderColor } = chartColors;
 
   useEffect(() => {
@@ -41,35 +34,29 @@ function BarChart01({
         },
         scales: {
           y: {
-            border: {
-              display: false,
-            },
+            border: { display: false },
             ticks: {
               maxTicksLimit: 5,
-              callback: (value) => formatValue(value),
-              color: darkMode ? textColor.dark : textColor.light,
+              // callback: (value) => formatValue(value),
+              color: textColor.light,
             },
             grid: {
-              color: darkMode ? gridColor.dark : gridColor.light,
+              color: gridColor.light,
             },
           },
           x: {
             type: 'time',
             time: {
-              parser: 'YYYY-MM-DD', // Fix for your date format
-              unit: 'day', // Change to 'day' for day-wise data
+              parser: 'YYYY-MM-DD',
+              unit: 'day',
               displayFormats: {
-                day: 'MMM DD', // Customize to show day and month
+                day: 'MMM DD',
               },
             },
-            border: {
-              display: false,
-            },
-            grid: {
-              display: false,
-            },
+            border: { display: false },
+            grid: { display: false },
             ticks: {
-              color: darkMode ? textColor.dark : textColor.light,
+              color: textColor.light,
             },
           },
         },
@@ -79,12 +66,12 @@ function BarChart01({
           },
           tooltip: {
             callbacks: {
-              title: () => false, // Disable tooltip title
-              label: (context) => formatValue(context.parsed.y),
+              title: () => false,
+              // label: (context) => formatValue(context.parsed.y),
             },
-            bodyColor: darkMode ? tooltipBodyColor.dark : tooltipBodyColor.light,
-            backgroundColor: darkMode ? tooltipBgColor.dark : tooltipBgColor.light,
-            borderColor: darkMode ? tooltipBorderColor.dark : tooltipBorderColor.light,
+            bodyColor: tooltipBodyColor.light,
+            backgroundColor: tooltipBgColor.light,
+            borderColor: tooltipBorderColor.light,
           },
         },
         interaction: {
@@ -100,7 +87,7 @@ function BarChart01({
       plugins: [
         {
           id: 'htmlLegend',
-          afterUpdate(c, args, options) {
+          afterUpdate(c) {
             const ul = legend.current;
             if (!ul) return;
             while (ul.firstChild) {
@@ -121,7 +108,7 @@ function BarChart01({
               box.style.display = 'block';
               box.style.width = '12px';
               box.style.height = '12px';
-              box.style.borderRadius = 'calc(infinity * 1px)';
+              box.style.borderRadius = '9999px';
               box.style.marginRight = '8px';
               box.style.borderWidth = '3px';
               box.style.borderColor = item.fillStyle;
@@ -130,21 +117,19 @@ function BarChart01({
               labelContainer.style.display = 'flex';
               labelContainer.style.alignItems = 'center';
               const value = document.createElement('span');
-              value.classList.add('text-gray-800', 'dark:text-gray-100');
+              value.classList.add('text-gray-800');
               value.style.fontSize = '30px';
-              value.style.lineHeight = 'calc(2.25 / 1.875)';
+              value.style.lineHeight = '1.2';
               value.style.fontWeight = '700';
               value.style.marginRight = '8px';
               value.style.pointerEvents = 'none';
               const label = document.createElement('span');
-              label.classList.add('text-gray-500', 'dark:text-gray-400');
+              label.classList.add('text-gray-500');
               label.style.fontSize = '14px';
-              label.style.lineHeight = 'calc(1.25 / 0.875)';
+              label.style.lineHeight = '1.25';
               const theValue = c.data.datasets[item.datasetIndex].data.reduce((a, b) => a + b, 0);
-              const valueText = document.createTextNode(formatValue(theValue));
-              const labelText = document.createTextNode(item.text);
-              value.appendChild(valueText);
-              label.appendChild(labelText);
+              value.appendChild(document.createTextNode((theValue)));
+              label.appendChild(document.createTextNode(item.text));
               li.appendChild(button);
               button.appendChild(box);
               button.appendChild(labelContainer);
@@ -156,6 +141,7 @@ function BarChart01({
         },
       ],
     });
+
     setChart(newChart);
     return () => newChart.destroy();
   }, []);
@@ -166,14 +152,14 @@ function BarChart01({
   }, [data]);
 
   return (
-    <React.Fragment>
+    <>
       <div className="px-5 py-3">
         <ul ref={legend} className="flex flex-wrap gap-x-4"></ul>
       </div>
       <div className="grow">
         <canvas ref={canvas} width={width} height={height}></canvas>
       </div>
-    </React.Fragment>
+    </>
   );
 }
 

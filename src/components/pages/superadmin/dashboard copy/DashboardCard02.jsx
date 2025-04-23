@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { API_URL } from '../../../utils/ApiConfig';
+import { StatCardHeader } from "../../../components/CardsDashboard";
+import { CheckCircle, XCircle, Pencil, Ban, Save, Edit, CalendarDays, Trash2, Eye, UserPlus, FolderSync, Briefcase } from "lucide-react";
 
 const DashboardCard02 = () => {
   const [leaves, setLeaves] = useState([]);
@@ -35,14 +37,15 @@ const DashboardCard02 = () => {
 
   return (
     <div className="col-span-full shadow-lg rounded-lg xl:col-span-6 bg-white shadow-xs rounded-xl">
-      <header className="px-5 pt-2 pb-2">
+      {/* <header className="px-5 pt-2 pb-2">
         <h2 className="font-semibold mb-2 text-2xl ">Recent Leaves</h2>
         <hr />
-      </header>
+      </header> */}
+      <StatCardHeader icon={CalendarDays} title="Recent Leaves" tooltip="Recent Leaves Details." />
       <div className="p-3">
-        <div className="overflow-x-auto">
+        <div className="overflow-auto max-h-[50vh]">
           <table className="table-auto w-full">
-            <thead className="text-xs uppercase text-white">
+            <thead className="text-xs uppercase text-white sticky top-0">
               <tr className='bg-blue-600 rounded-lg'>
                 <th className="p-3 text-left">Employee Name</th>
                 <th className="p-3 text-center">Leave Type</th>

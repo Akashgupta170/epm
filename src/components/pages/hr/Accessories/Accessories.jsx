@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Eye, EyeOff, Search  ,BarChart} from 'lucide-react';
-import {SectionHeader } from "../../../components/SectionHeader";
+import { Eye, EyeOff, Search, BarChart } from 'lucide-react';
+import { SectionHeader } from "../../../components/SectionHeader";
 const initialData = [
   {
     id: 1,
@@ -64,57 +64,59 @@ export default function EmployeeAccessoriesTable() {
     );
   });
   return (
-    <div className="max-full mx-auto  bg-white shadow rounded-lg">
+    <div className="max-full mx-auto  bg-white shadow rounded-2xl">
       {/* <h2 className="text-3xl font-semibold mb-6 text-gray-800">Employee Accessories Management</h2> */}
       <SectionHeader icon={BarChart} title="Employee Accessories Management" subtitle="View, edit and manage accessories" />
-      <div className="flex flex-wrap md:flex-nowrap items-center gap-3 border p-2 rounded-lg shadow-md bg-white">
-      <div className="flex items-center w-full border border-gray-300 px-2 rounded-lg focus-within:ring-2 focus-within:ring-blue-500">
-      <Search className="h-5 w-5 text-gray-400 mr-[5px]" />
-      <input
-          type="text"
-          placeholder="Search by Name"
-          className="w-full rounded-lg focus:outline-none py-2"
-          onChange={e => handleFilterChange('name', e.target.value)}
-        />
+      <div className="flex flex-wrap items-center justify-end gap-4 p-4 sticky top-0 bg-white z-10 shadow-md">
+        <div className="flex flex-wrap md:flex-nowrap items-center gap-3 border p-2 rounded-lg shadow-md bg-white">
+          <div className="flex items-center w-full border border-gray-300 px-2 rounded-lg focus-within:ring-2 focus-within:ring-blue-500">
+            <Search className="h-5 w-5 text-gray-400 mr-[5px]" />
+            <input
+              type="text"
+              placeholder="Search by Name"
+              className="w-full rounded-lg focus:outline-none py-2"
+              onChange={e => handleFilterChange('name', e.target.value)}
+            />
+          </div>
+
+          <div className="flex items-center w-full border border-gray-300 px-2 rounded-lg focus-within:ring-2 focus-within:ring-blue-500">
+            <Search className="h-5 w-5 text-gray-400 mr-[5px]" />
+            <input
+              type="text"
+              placeholder="Search by Setup (laptop/pc)"
+              className="w-full rounded-lg focus:outline-none py-2"
+              onChange={e => handleFilterChange('setup', e.target.value)}
+            />
+          </div>
+          <input
+            type="date"
+            className="border border-gray-300 p-2 rounded-md shadow-sm"
+            onChange={e => handleFilterChange('date', e.target.value)}
+          />
         </div>
-        
-        <div className="flex items-center w-full border border-gray-300 px-2 rounded-lg focus-within:ring-2 focus-within:ring-blue-500">
-        <Search className="h-5 w-5 text-gray-400 mr-[5px]" />
-        <input
-          type="text"
-          placeholder="Search by Setup (laptop/pc)"
-          className="w-full rounded-lg focus:outline-none py-2"
-          onChange={e => handleFilterChange('setup', e.target.value)}
-        />
-        </div>
-        <input
-          type="date"
-          className="border border-gray-300 p-2 rounded-md shadow-sm"
-          onChange={e => handleFilterChange('date', e.target.value)}
-        />
       </div>
       <div className="overflow-x-auto">
-        <table className="min-w-full table-auto border border-gray-300 rounded-md shadow-md">
-          <thead className="bg-blue-600 text-white">
-            <tr>
-              <th className="p-3 border">Name</th>
-              <th className="p-3 border">Setup</th>
-              <th className="p-3 border">Issue Date</th>
-              <th className="p-3 border">Condition</th>
-              <th className="p-3 border">Note</th>
-              <th className="p-3 border text-center">Action</th>
+        <table className="min-w-full table-auto rounded-lg">
+          <thead className="">
+            <tr className="table-th-tr-row table-bg-heading">
+              <th className="px-4 py-2 text-center">Name</th>
+              <th className="px-4 py-2 text-center">Setup</th>
+              <th className="px-4 py-2 text-center">Issue Date</th>
+              <th className="px-4 py-2 text-center">Condition</th>
+              <th className="px-4 py-2 text-center">Note</th>
+              <th className="px-4 py-2 text-center">Action</th>
             </tr>
           </thead>
-          <tbody className="text-gray-700">
+          <tbody className="divide-y divide-gray-100">
             {filteredEmployees.map((emp) => (
               <React.Fragment key={emp.id}>
-                <tr className="hover:bg-gray-100">
-                  <td className="p-3 border font-medium">{emp.name}</td>
-                  <td className="p-3 border">{emp.setup === 'laptop' ? 'Laptop' : 'PC + Monitor'}</td>
-                  <td className="p-3 border">{emp.issueDate}</td>
-                  <td className="p-3 border">{emp.condition}</td>
-                  <td className="p-3 border">{emp.note}</td>
-                  <td className="p-3 border text-center">
+                <tr className="hover:bg-blue-50/50 transition-all duration-200 ease-in-out">
+                  <td className="px-6 py-4 text-center text-gray-700">{emp.name}</td>
+                  <td className="px-6 py-4 text-center text-gray-700">{emp.setup === 'laptop' ? 'Laptop' : 'PC + Monitor'}</td>
+                  <td className="px-6 py-4 text-center text-gray-700">{emp.issueDate}</td>
+                  <td className="px-6 py-4 text-center text-gray-700">{emp.condition}</td>
+                  <td className="px-6 py-4 text-center text-gray-700">{emp.note}</td>
+                  <td className="px-6 py-4 text-center text-gray-700">
                     <button onClick={() => toggleView(emp.id)} className="text-blue-600 hover:text-blue-800">
                       {expandedUserId === emp.id ? <EyeOff size={18} /> : <Eye size={18} />}
                     </button>

@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { usePMContext } from "../../../context/PMContext";
-import { Loader2, Calendar, DollarSign, Clock, Users, Briefcase, CheckCircle2 } from "lucide-react";
+import { Loader2, Calendar, DollarSign, Clock, Users, BriefcaseBusiness, Briefcase, CheckCircle2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { SectionHeader } from '../../../components/SectionHeader';
 export const PMAssignedtable = () => {
   const { assignedProjects, isLoading, fetchAssignedProjects } = usePMContext();
   console.log("these are assigned projects", assignedProjects);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   useEffect(() => {
     fetchAssignedProjects();
   }, []);
@@ -31,13 +32,13 @@ export const PMAssignedtable = () => {
               </div>
             </div>
             <div
-      className="flex items-center px-3 py-1.5 bg-green-50 text-green-600 rounded-full cursor-pointer"
-      onClick={() => navigate(`/projectmanager/tasks/${project.id}`)}
+              className="flex items-center px-3 py-1.5 bg-green-50 text-green-600 rounded-full cursor-pointer"
+              onClick={() => navigate(`/projectmanager/tasks/${project.id}`)}
 
-    >
-      <CheckCircle2 className="w-4 h-4 mr-1" />
-      <span className="text-sm font-medium">Tasks</span>
-    </div>
+            >
+              <CheckCircle2 className="w-4 h-4 mr-1" />
+              <span className="text-sm font-medium">Tasks</span>
+            </div>
           </div>
 
           {/* Project Details */}
@@ -81,15 +82,15 @@ export const PMAssignedtable = () => {
           {/* Assignment Date */}
           <div className="flex items-center justify-end pt-4 border-t border-gray-100">
             <p className="text-sm text-gray-500">
-              Assigned: {project.assigned_by?.updated_at 
+              Assigned: {project.assigned_by?.updated_at
                 ? new Date(project.assigned_by.updated_at).toLocaleString("en-US", {
-                    year: "numeric",
-                    month: "short", 
-                    day: "2-digit",
-                    hour: "2-digit",
-                    minute: "2-digit",
-                    hour12: true, 
-                  })
+                  year: "numeric",
+                  month: "short",
+                  day: "2-digit",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  hour12: true,
+                })
                 : "N/A"}
             </p>
           </div>
@@ -99,14 +100,15 @@ export const PMAssignedtable = () => {
   );
 
   return (
-    <div className="bg-gradient-to-b from-gray-50 to-white min-h-screen p-6">
-      <div className="max-w-7xl mx-auto">
+    <div className="bg-gradient-to-b from-gray-50 to-white min-h-screen">
+      <SectionHeader icon={BriefcaseBusiness} title="Projects Assigned" subtitle="Manage and track your assigned projects" />
+      <div className="max-w-7xl mx-auto p-4">
         {/* Header */}
-        <div className="mb-10 text-center">
-          <h2 className="text-4xl font-extrabold bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text mb-3">
-            Projects Assigned
+        <div className="mb-6 text-center">
+          <h2 className="text-4xl font-extrabold bg-gradient-to-r from-blue-600 to-purple-600 text-transparent bg-clip-text py-3">
+            PROJECTS
           </h2>
-          <p className="text-lg text-gray-600">Manage and track your assigned projects</p>
+          {/* <p className="text-lg text-gray-600">Manage and track your assigned projects</p> */}
         </div>
         {isLoading ? (
           <div className="flex items-center justify-center min-h-[400px]">

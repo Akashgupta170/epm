@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
-import { Calendar, Users, FileText, Briefcase, ArrowUpRight, Clock } from 'lucide-react';
+import { Calendar, Users, FileText,BarChart, Briefcase, ArrowUpRight, Clock } from 'lucide-react';
 import { useUserContext } from '../../../context/UserContext';
 import { useNavigate } from "react-router-dom";
+import { SectionHeader } from '../../../components/SectionHeader';
+
 function ProjectCard({ project }) {
     const navigate = useNavigate(); 
   return (
@@ -81,9 +83,11 @@ function App() {
   console.log("User Assigned Projects:", userassignedProjects);
 
   return (
+    <>
+      <SectionHeader icon={BarChart} title="Projects Assigned" subtitle="Track and manage your assigned projects efficiently with our intuitive dashboard." />
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        {/* <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center p-2 bg-white rounded-2xl shadow-md mb-6">
             <Briefcase className="w-12 h-12 text-blue-600 mr-3 transform transition-transform group-hover:rotate-12" />
             <h1 className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-800">
@@ -96,7 +100,7 @@ function App() {
               Track and manage your assigned projects efficiently with our intuitive dashboard.
             </p>
           </div>
-        </div>
+        </div> */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {Array.isArray(userassignedProjects) && userassignedProjects.length > 0 ? (
             userassignedProjects.map(project => <ProjectCard key={project.id} project={project} />)
@@ -106,6 +110,7 @@ function App() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Loader2 } from "lucide-react";
+import { Loader2, BriefcaseBusiness } from "lucide-react";
 import { useBDProjectsAssigned } from "../../../context/BDProjectsassigned";
 import { usePMContext } from "../../../context/PMContext"; // Import PM context
+import { SectionHeader } from '../../../components/SectionHeader';
 import { EditButton, SaveButton, CancelButton, YesButton, DeleteButton, ExportButton, ImportButton, ClearButton, CloseButton, SubmitButton, IconApproveButton, IconRejectButton, IconCancelTaskButton, IconSaveButton, IconDeleteButton, IconEditButton, IconViewButton, } from "../../../AllButtons/AllButtons";
 
 
@@ -49,16 +50,15 @@ export const PMassign = () => {
   };
 
   return (
-    <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm p-6 mb-3.5">
-      <h2 className="text-xl font-semibold text-gray-800">Assign Projects</h2>
-      <p className="text-sm text-gray-500 mt-1">Add a new Project to the Team Members</p>
-
-      <button
-        onClick={() => setIsModalOpen(true)}
-        className="mt-4 add-items-btn"
-      >
-        Assign Project
-      </button>
+    <div className="overflow-hidden bg-white shadow-sm">
+      <SectionHeader icon={BriefcaseBusiness} title="Projects Assigned" subtitle="Manage and track your assigned projects" />
+      {/* <h2 className="text-xl font-semibold text-gray-800">Assign Projects</h2>
+      <p className="text-sm text-gray-500 mt-1">Add a new Project to the Team Members</p> */}
+      <div className="flex flex-wrap md:flex-nowrap items-center gap-3 border p-4 shadow-md bg-white">
+        <button onClick={() => setIsModalOpen(true)} className="add-items-btn">
+          Assign Project
+        </button>
+      </div>
 
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
@@ -133,13 +133,13 @@ export const PMassign = () => {
                 )}
               </div>
 
-              <button
+              {/* <button
                 type="submit"
                 className="w-full flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white font-medium p-2 rounded-md transition-colors duration-150 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Submit
-              </button>
-              <SubmitButton/>
+              </button> */}
+              <SubmitButton type="submit" />
             </form>
           </div>
         </div>

@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react'; 
 import BarChart from '../../../charts/BarChart01';
 import { GraphContext } from '../../../context/GraphContext';
+import { StatCardHeader } from "../../../components/CardsDashboard";
+import { Briefcase } from "lucide-react";
 // Import utilities
 import { getCssVariable } from '../Dashutils/Utils';
 
@@ -64,11 +66,8 @@ function DashboardCard04() {
    };
  
    return (
-     <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-8 bg-white  ring shadow-xl ring-gray-100 rounded-lg">
-       <header className="px-5 py-4 border-b border-gray-100 ">
-         <h2 className="font-semibold text-gray-800 ">Weekly Status</h2>
-       </header>
-       
+     <div className="flex flex-col col-span-full sm:col-span-6 xl:col-span-7 bg-white  ring shadow-xl ring-gray-100 rounded-lg">
+       <StatCardHeader icon={Briefcase} title="Weekly status" tooltip="Weekly status" />
        {/* Check if data is available */}
        {loading ? (
          <p>Loading...</p>

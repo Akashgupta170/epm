@@ -25,14 +25,14 @@ export const Tableassigned = () => {
     }, [searchQuery, employeeProjects]);
 
     return (
-        <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl p-6">
-            <div className="top-heading-bg rounded-xl">
+        <div className="overflow-hidden rounded-b-2xl border border-gray-200 bg-white shadow-2xl">
+            {/* <div className="top-heading-bg rounded-xl">
                 <div className="flex items-center gap-3 mb-3">
                     <BarChart className="h-10 w-10 text-blue-100" />
                     <h2 className="text-3xl font-bold text-white">Assigned Projects</h2>
                 </div>
                 <p className="text-blue-100 text-lg">Projects Assigned to Team Members</p>
-            </div>
+            </div> */}
 
             {/* Search Input */}
             <div className="p-4 flex items-center gap-3">
