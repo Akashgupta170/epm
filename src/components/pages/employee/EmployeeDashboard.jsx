@@ -37,17 +37,6 @@ const EmployeeDashboard = () => {
       
     // </div>
         <div className="grid grid-cols-12 gap-6 ">
-    
-                  {/* Line chart (Acme Plus) */}
-                  {/* <GraphProvider>
-                    <ProjectProvider>
-                      <DashboardCard01 />
-                    </ProjectProvider>
-                  </GraphProvider> */}
-
-                  {/* <DashboardCard02 /> */}
-
-                  {/* <DashboardCard03 /> */}
 
                   <GraphProvider>
                     <DashboardCard06 />
@@ -62,10 +51,6 @@ const EmployeeDashboard = () => {
                   </UserProvider>
                   
                   <DashboardCard05 />
-
-                  {/* <DashboardCard08 /> */}
-
-                  {/* <DashboardCard09 /> */}
                   
                   
                 </div>

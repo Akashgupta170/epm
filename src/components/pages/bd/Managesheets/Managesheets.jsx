@@ -440,7 +440,7 @@ export const Managesheets = () => {
                       ) : sheet.status === "approved" ? (
                         <div className="flex items-center gap-3">
                           <IconApproveButton />
-                          <IconEditButton onClick={() => toggleEditMode(sheet.id)} />
+                          {/* <IconEditButton onClick={() => toggleEditMode(sheet.id)} /> */}
                           {/* <button onClick={() => toggleEditMode(sheet.id)} className="hover:scale-110 transition">
                             <Pencil className="text-blue-600 h-7 w-7 hover:text-blue-700" />
                           </button> */}
@@ -448,7 +448,7 @@ export const Managesheets = () => {
                       ) : sheet.status === "rejected" ? (
                         <div className="flex items-center gap-3">
                           <IconRejectButton />
-                          <IconEditButton onClick={() => toggleEditMode(sheet.id)} />
+                          {/* <IconEditButton onClick={() => toggleEditMode(sheet.id)} /> */}
                           {/* <button onClick={() => toggleEditMode(sheet.id)} className="hover:scale-110 transition">
                             <Pencil className="text-gray-500 h-7 w-7 hover:text-gray-700" />
                           </button> */}

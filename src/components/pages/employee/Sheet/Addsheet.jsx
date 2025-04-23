@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Calendar, Clock, Briefcase, ClipboardList, Home, FileText, Save, BarChart, Trash2, Edit } from 'lucide-react';
+import { Clock, Briefcase, ClipboardList, Home, FileText, Save, Trash2, Edit } from 'lucide-react';
 import { useUserContext } from "../../../context/UserContext";
 import { SectionHeader } from '../../../components/SectionHeader';
 const Addsheet = () => {
@@ -7,14 +7,14 @@ const Addsheet = () => {
   const { submitEntriesForApproval } = useUserContext();
   const [submitting, setSubmitting] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
-  const [view, setView] = useState('dashboard');
-  const [rows, setRows] = useState([]);
-  const [projects, setProjects] = useState([]);
-  const [standups, setStandups] = useState([]);
-  const [users, setUsers] = useState([]);
-  const [profileName, setProfileName] = useState('');
+  // const [view, setView] = useState('dashboard');
+  // const [rows, setRows] = useState([]);
+  // const [projects, setProjects] = useState([]);
+  // const [standups, setStandups] = useState([]);
+  // const [users, setUsers] = useState([]);
+  // const [profileName, setProfileName] = useState('');
   const { userProjects, loading, error } = useUserContext();
-  const [selectedProject, setSelectedProject] = useState("");
+  // const [selectedProject, setSelectedProject] = useState("");
   const [tags, setTags] = useState([]);
 
   // console.log("projects mounted", userProjects);
